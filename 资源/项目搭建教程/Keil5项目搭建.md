@@ -4,7 +4,7 @@
 
 - 下载模板文件到本地（项目名可以自己命名），模板文件就在仓库中的[模板](https://github.com/krslk/Keil/tree/main/%E6%A8%A1%E6%9D%BF/ProjectName)文件夹下。
 
-<img src="E:\KeilCode_Git\Keil\Keil5项目搭建.assets\image-20240927112301248.png" alt="image-20240927112301248" style="zoom:50%;" />
+<img src=".\Keil5项目搭建.assets\image-20240927112301248.png" alt="image-20240927112301248" style="zoom:50%;" />
 
 ### 2.新建项目
 
