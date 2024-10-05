@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2024  11:34:49  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/04/2024  22:45:45  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE main.obj TO c51 RAMSIZE (256)
+C:\KEIL_V5\C51\BIN\BL51.EXE main.obj TO template RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,7 +13,7 @@ INPUT MODULES INCLUDED:
   C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
 
 
-LINK MAP OF MODULE:  c51 (MAIN)
+LINK MAP OF MODULE:  template (MAIN)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -30,7 +30,7 @@ LINK MAP OF MODULE:  c51 (MAIN)
 
 
 
-OVERLAY MAP OF MODULE:   c51 (MAIN)
+OVERLAY MAP OF MODULE:   template (MAIN)
 
 
 SEGMENT
@@ -41,7 +41,7 @@ SEGMENT
 
 
 
-SYMBOL TABLE OF MODULE:  c51 (MAIN)
+SYMBOL TABLE OF MODULE:  template (MAIN)
 
   VALUE           TYPE          NAME
   ----------------------------------
@@ -59,13 +59,13 @@ SYMBOL TABLE OF MODULE:  c51 (MAIN)
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
   C:000FH         LINE#         3
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  11:34:49  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/04/2024  22:45:45  PAGE 2
 
 
   C:000FH         LINE#         4
   C:000FH         LINE#         5
   C:000FH         LINE#         6
-  C:000FH         LINE#         7
+  C:000FH         LINE#         8
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 

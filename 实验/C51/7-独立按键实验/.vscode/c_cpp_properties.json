@@ -40,7 +40,7 @@
             "name": "Target 1",
             "includePath": [
                 "C:\\Keil_v5\\C51\\INC",
-                "e:\\KeilCode_Git\\Keil\\实验\\C51\\LED蜂鸣器"
+                "e:\\KeilCode_Git\\Keil\\实验\\C51\\7-独立按键实验"
             ],
             "defines": [
                 "__C51__",
