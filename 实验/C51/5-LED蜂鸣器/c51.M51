@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2024  11:34:49  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2024  11:49:00  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -25,8 +25,9 @@ LINK MAP OF MODULE:  c51 (MAIN)
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     000CH     UNIT         ?C_C51STARTUP
-            CODE    000FH     0002H     UNIT         ?PR?MAIN?MAIN
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     000CH     UNIT         ?C_C51STARTUP
+            CODE    080CH     0005H     UNIT         ?PR?MAIN?MAIN
 
 
 
@@ -49,29 +50,31 @@ SYMBOL TABLE OF MODULE:  c51 (MAIN)
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:000FH         PUBLIC        main
+  C:080CH         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  11:49:00  PAGE 2
+
+
   -------         PROC          MAIN
-  C:000FH         LINE#         3
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  11:34:49  PAGE 2
-
-
-  C:000FH         LINE#         4
-  C:000FH         LINE#         5
-  C:000FH         LINE#         6
-  C:000FH         LINE#         7
+  C:080CH         LINE#         3
+  C:080CH         LINE#         4
+  C:080CH         LINE#         5
+  C:080CH         LINE#         6
+  C:080CH         LINE#         7
+  C:080FH         LINE#         8
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0002H BYTE ( 0%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0005H BYTE ( 0%) *
 ******************************************************************************
 
-Program Size: data=9.0 xdata=0 code=17
+Program Size: data=9.0 xdata=0 code=20
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
