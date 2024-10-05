@@ -1,0 +1,12 @@
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEDSHOW?MAIN
+
+Program Size: data=35.0 xdata=0 code=628
+creating hex file from "c51"...
+"c51" - 0 Error(s), 2 Warning(s).
