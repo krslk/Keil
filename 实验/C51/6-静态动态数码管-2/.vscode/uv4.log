@@ -1,0 +1,10 @@
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(102): warning C280: 'r': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+
+Program Size: data=41.0 xdata=0 code=634
+creating hex file from "c51"...
+"c51" - 0 Error(s), 2 Warning(s).

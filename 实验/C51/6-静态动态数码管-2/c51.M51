@@ -1,0 +1,225 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/07/2024  23:55:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE main.obj TO c51 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  c51 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?MAIN
+            DATA    0019H     000FH     UNIT         _DATA_GROUP_
+            IDATA   0028H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00B8H     UNIT         ?C?LIB_CODE
+            CODE    08B8H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0944H     005AH     UNIT         ?PR?_LEDSHOW?MAIN
+            CODE    099EH     0054H     UNIT         ?PR?_LED_SWITCH?MAIN
+            CODE    09F2H     0046H     UNIT         ?PR?MAIN?MAIN
+            CODE    0A38H     0020H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0A58H     0014H     UNIT         ?C_INITSEG
+            CODE    0A6CH     000BH     UNIT         ?PR?_DELAY_10US?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   c51 (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  0019H    0006H
+  +--> ?PR?_LEDSHOW?MAIN
+
+?PR?_LEDSHOW?MAIN              001FH    0009H
+  +--> ?PR?_LED_SWITCH?MAIN
+  +--> ?PR?_DELAY_10US?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/07/2024  23:55:11  PAGE 2
+
+
+
+
+
+SYMBOL TABLE OF MODULE:  c51 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:09F2H         PUBLIC        main
+  C:099EH         PUBLIC        _led_switch
+  D:0008H         PUBLIC        led_code
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0A6CH         PUBLIC        _delay_10us
+  C:0A38H         PUBLIC        _delay_ms
+  C:0944H         PUBLIC        _ledShow
+  D:00C8H         PUBLIC        T2CON
+  B:00A0H.2       PUBLIC        led_a
+  B:00A0H.3       PUBLIC        led_b
+  B:00A0H.4       PUBLIC        led_c
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        us
+  C:0A6CH         LINE#         13
+  C:0A6CH         LINE#         14
+  C:0A6CH         LINE#         15
+  C:0A76H         LINE#         17
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0A38H         LINE#         22
+  C:0A38H         LINE#         23
+  C:0A38H         LINE#         25
+  C:0A42H         LINE#         26
+  C:0A57H         LINE#         28
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _LED_SWITCH
+  D:0006H         SYMBOL        num
+  C:099EH         LINE#         40
+  C:099EH         LINE#         41
+  C:099EH         LINE#         42
+  C:09C6H         LINE#         43
+  C:09C6H         LINE#         44
+  C:09C6H         LINE#         45
+  C:09C8H         LINE#         46
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/07/2024  23:55:11  PAGE 3
+
+
+  C:09C8H         LINE#         47
+  C:09C8H         LINE#         48
+  C:09CAH         LINE#         49
+  C:09CAH         LINE#         50
+  C:09CCH         LINE#         51
+  C:09CCH         LINE#         52
+  C:09CCH         LINE#         53
+  C:09CEH         LINE#         54
+  C:09CEH         LINE#         55
+  C:09D0H         LINE#         56
+  C:09D0H         LINE#         57
+  C:09D0H         LINE#         58
+  C:09D2H         LINE#         59
+  C:09D2H         LINE#         60
+  C:09D4H         LINE#         61
+  C:09D4H         LINE#         62
+  C:09D4H         LINE#         63
+  C:09D6H         LINE#         64
+  C:09D6H         LINE#         65
+  C:09D8H         LINE#         66
+  C:09DAH         LINE#         67
+  C:09DCH         LINE#         68
+  C:09DDH         LINE#         69
+  C:09DDH         LINE#         70
+  C:09DFH         LINE#         71
+  C:09E1H         LINE#         72
+  C:09E3H         LINE#         73
+  C:09E4H         LINE#         74
+  C:09E4H         LINE#         75
+  C:09E6H         LINE#         76
+  C:09E8H         LINE#         77
+  C:09EAH         LINE#         78
+  C:09EBH         LINE#         79
+  C:09EBH         LINE#         80
+  C:09EDH         LINE#         81
+  C:09EFH         LINE#         82
+  C:09F1H         LINE#         83
+  C:09F1H         LINE#         84
+  -------         ENDPROC       _LED_SWITCH
+  -------         PROC          _LEDSHOW
+  D:001FH         SYMBOL        showInfo
+  D:0022H         SYMBOL        len
+  D:0024H         SYMBOL        start
+  -------         DO            
+  D:0026H         SYMBOL        i
+  -------         ENDDO         
+  C:0944H         LINE#         88
+  C:094EH         LINE#         89
+  C:094EH         LINE#         91
+  C:0953H         LINE#         92
+  C:0953H         LINE#         93
+  C:0960H         LINE#         94
+  C:0963H         LINE#         95
+  C:0983H         LINE#         96
+  C:098AH         LINE#         97
+  C:099DH         LINE#         98
+  -------         ENDPROC       _LEDSHOW
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/07/2024  23:55:11  PAGE 4
+
+
+  -------         PROC          MAIN
+  -------         DO            
+  D:0019H         SYMBOL        s
+  D:001BH         SYMBOL        i
+  D:001DH         SYMBOL        r
+  -------         ENDDO         
+  C:09F2H         LINE#         100
+  C:09F2H         LINE#         101
+  C:09F2H         LINE#         102
+  C:09F7H         LINE#         103
+  C:09F7H         LINE#         104
+  C:09F7H         LINE#         105
+  C:09FCH         LINE#         106
+  C:09FCH         LINE#         107
+  C:0A0FH         LINE#         108
+  C:0A22H         LINE#         109
+  C:0A36H         LINE#         110
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0800H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:082DH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?SIDIV
+  C:0882H         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0132H BYTE (14%) *
+******************************************************************************
+
+Program Size: data=41.0 xdata=0 code=634
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
