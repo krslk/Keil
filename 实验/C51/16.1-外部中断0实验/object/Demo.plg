@@ -10,6 +10,10 @@ Project File Date:  10/08/2024
 Build target 'Demo'
 compiling main.c...
 linking...
-Program Size: data=9.0 xdata=0 code=16
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?EXTI1_INIT?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+Program Size: data=9.0 xdata=0 code=148
 creating hex file from ".\object\Demo"...
-".\object\Demo" - 0 Error(s), 0 Warning(s).
+".\object\Demo" - 0 Error(s), 2 Warning(s).

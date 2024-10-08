@@ -41,8 +41,8 @@
             "name": "Demo",
             "includePath": [
                 "C:\\Keil_v5\\C51\\INC",
-                "e:\\KeilCode_Git\\Keil\\实验\\C51\\16.1-外部中断0实验\\startup",
-                "e:\\KeilCode_Git\\Keil\\实验\\C51\\16.1-外部中断0实验\\user"
+                "e:\\KeilCode_Git\\Keil\\实验\\C51\\1-红绿灯\\startup",
+                "e:\\KeilCode_Git\\Keil\\实验\\C51\\1-红绿灯\\user"
             ],
             "defines": [
                 "__C51__",
