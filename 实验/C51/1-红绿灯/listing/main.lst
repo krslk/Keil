@@ -1,0 +1,71 @@
+C51 COMPILER V9.01   MAIN                                                                  10/08/2024 18:05:14 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\object\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\listing\main.lst) OBJECT(.
+                    -\object\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "head.h"
+   3          
+   4          #ifndef LED_CONTROLLER
+   5          
+   6          sbit led_green_ns = P1 ^ 4;
+   7          sbit led_yellow_ns = P1 ^ 5;
+   8          sbit led_red_ns = P1 ^ 6;
+   9          sbit led_green_we = P2 ^ 6;
+  10          sbit led_yellow_we = P2 ^ 5;
+  11          sbit led_red_we = P2 ^ 4;
+  12          sbit led_test = P0 ^ 1;
+  13          
+  14          #endif
+  15          
+  16          void delay_ms(uint_16 ms)
+  17          {
+  18   1          uint_16 i, j;
+  19   1          for (i = 0; i < ms; i++)
+  20   1              for (j = 0; j < 1000; j++)
+  21   1                  ;
+  22   1      }
+  23          
+  24          void main()
+  25          {
+  26   1          while (1)
+  27   1          {
+  28   2              led_green_ns = 1;
+  29   2              led_yellow_ns = 1;
+  30   2              led_red_ns = 1;
+  31   2              led_green_we = 1;
+  32   2              led_yellow_we = 1;
+  33   2              led_red_we = 1;
+  34   2              led_test = 1;
+  35   2              delay_ms(100);
+  36   2              led_green_ns = 0;
+  37   2              led_yellow_ns = 0;
+  38   2              led_red_ns = 0;
+  39   2              led_green_we = 0;
+  40   2              led_yellow_we = 0;
+  41   2              led_red_we = 0;
+  42   2              led_test = 0;
+  43   2              delay_ms(100);
+  44   2          }
+  45   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     72    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  10/08/2024 18:05:14 PAGE 2   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

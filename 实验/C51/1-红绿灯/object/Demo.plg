@@ -3,14 +3,13 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Project:</h2>
-e:\KeilCode_Git\Keil\实验\C51\17-定时器\Demo.uvproj
+e:\KeilCode_Git\Keil\实验\C51\1-红绿灯\Demo.uvproj
 Project File Date:  10/08/2024
 
 <h2>Output:</h2>
 Build target 'Demo'
 compiling main.c...
-USER\MAIN.C(20): warning C290: missing return value
 linking...
-Program Size: data=32.0 xdata=0 code=464
+Program Size: data=9.0 xdata=0 code=87
 creating hex file from ".\object\Demo"...
-".\object\Demo" - 0 Error(s), 1 Warning(s).
+".\object\Demo" - 0 Error(s), 0 Warning(s).
