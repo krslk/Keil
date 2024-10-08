@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/05/2024  21:03:03  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/08/2024  11:21:21  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ SEGMENT                          DATA_GROUP
 SYMBOL TABLE OF MODULE:  c51 (MAIN)
 
   VALUE           TYPE          NAME
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  21:03:03  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2024  11:21:21  PAGE 2
 
 
   ----------------------------------
@@ -110,66 +110,66 @@ SYMBOL TABLE OF MODULE:  c51 (MAIN)
   -------         DO            
   D:0008H         SYMBOL        status
   -------         ENDDO         
-  C:088CH         LINE#         35
-  C:088CH         LINE#         36
-  C:088CH         LINE#         38
-  C:0890H         LINE#         39
-  C:0895H         LINE#         40
-  C:08A9H         LINE#         41
-  C:08A9H         LINE#         42
-  C:08AEH         LINE#         43
-  C:08B5H         LINE#         44
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  21:03:03  PAGE 3
+  C:088CH         LINE#         39
+  C:088CH         LINE#         40
+  C:088CH         LINE#         42
+  C:0890H         LINE#         43
+  C:0895H         LINE#         44
+  C:08A9H         LINE#         45
+  C:08A9H         LINE#         46
+  C:08AEH         LINE#         47
+  C:08B5H         LINE#         48
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2024  11:21:21  PAGE 3
 
 
-  C:08B8H         LINE#         45
-  C:08B8H         LINE#         46
-  C:08BDH         LINE#         47
-  C:08BDH         LINE#         48
-  C:08C0H         LINE#         49
-  C:08C0H         LINE#         50
-  C:08C5H         LINE#         51
-  C:08C5H         LINE#         52
-  C:08C8H         LINE#         53
-  C:08C8H         LINE#         54
-  C:08CDH         LINE#         55
-  C:08CDH         LINE#         56
-  C:08D0H         LINE#         57
-  C:08D0H         LINE#         58
-  C:08D5H         LINE#         59
-  C:08D5H         LINE#         60
-  C:08D5H         LINE#         61
-  C:08E1H         LINE#         62
-  C:08E1H         LINE#         63
-  C:08E7H         LINE#         64
-  C:08E7H         LINE#         65
-  C:08EAH         LINE#         66
+  C:08B8H         LINE#         49
+  C:08B8H         LINE#         50
+  C:08BDH         LINE#         51
+  C:08BDH         LINE#         52
+  C:08C0H         LINE#         53
+  C:08C0H         LINE#         54
+  C:08C5H         LINE#         55
+  C:08C5H         LINE#         56
+  C:08C8H         LINE#         57
+  C:08C8H         LINE#         58
+  C:08CDH         LINE#         59
+  C:08CDH         LINE#         60
+  C:08D0H         LINE#         61
+  C:08D0H         LINE#         62
+  C:08D5H         LINE#         63
+  C:08D5H         LINE#         64
+  C:08D5H         LINE#         65
+  C:08E1H         LINE#         66
+  C:08E1H         LINE#         67
+  C:08E7H         LINE#         68
+  C:08E7H         LINE#         69
+  C:08EAH         LINE#         70
   -------         ENDPROC       _KEYSCAN
   -------         PROC          MAIN
   -------         DO            
   D:000AH         SYMBOL        res
   -------         ENDDO         
-  C:08EBH         LINE#         68
-  C:08EBH         LINE#         69
-  C:08EBH         LINE#         70
-  C:08EBH         LINE#         71
   C:08EBH         LINE#         72
-  C:08F6H         LINE#         73
-  C:090AH         LINE#         74
-  C:090AH         LINE#         75
-  C:090AH         LINE#         76
-  C:090CH         LINE#         77
-  C:090EH         LINE#         78
-  C:090EH         LINE#         79
-  C:0910H         LINE#         80
-  C:0912H         LINE#         81
-  C:0912H         LINE#         82
-  C:0914H         LINE#         83
-  C:0916H         LINE#         84
-  C:0916H         LINE#         85
-  C:0918H         LINE#         86
-  C:091AH         LINE#         87
-  C:091CH         LINE#         88
+  C:08EBH         LINE#         73
+  C:08EBH         LINE#         74
+  C:08EBH         LINE#         75
+  C:08EBH         LINE#         76
+  C:08F6H         LINE#         77
+  C:090AH         LINE#         78
+  C:090AH         LINE#         79
+  C:090AH         LINE#         80
+  C:090CH         LINE#         81
+  C:090EH         LINE#         82
+  C:090EH         LINE#         83
+  C:0910H         LINE#         84
+  C:0912H         LINE#         85
+  C:0912H         LINE#         86
+  C:0914H         LINE#         87
+  C:0916H         LINE#         88
+  C:0916H         LINE#         89
+  C:0918H         LINE#         90
+  C:091AH         LINE#         91
+  C:091CH         LINE#         92
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -179,7 +179,7 @@ SYMBOL TABLE OF MODULE:  c51 (MAIN)
 ******************************************************************************
 * RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C1H BYTE ( 9%) *
 ******************************************************************************
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/05/2024  21:03:03  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2024  11:21:21  PAGE 4
 
 
 
