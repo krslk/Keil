@@ -102,7 +102,7 @@ void ledShow(uchar_8 showInfo[], uint_16 len, uint_16 start)
 
 void main()
 {
-	int s = 0, i, r;
+	int s = 0, i;
 	while (1)
 	{
 		for (i = 0; i <= 150; i++)
