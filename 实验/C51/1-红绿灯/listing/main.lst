@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   MAIN                                                                  10/09/2024 19:26:59 PAGE 1   
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
@@ -12,291 +12,331 @@ line level    source
    2          
    3          typedef unsigned char uchar_8;
    4          typedef unsigned int uint_16;
-   5          typedef int int_16;
-   6          
+   5          
+   6          // LED相关配置
    7          #ifndef LED_CONTROLLER
    8          #define LED_CONTROLLER
-   9          int_16 sec_ns_step = 23;
-  10          int_16 sec_we_step = 20;
-  11          int_16 sec_ns = 0;
-  12          int_16 sec_we = 0;
-  13          sbit led_green_ns = P1 ^ 4;
-  14          sbit led_yellow_ns = P1 ^ 5;
-  15          sbit led_red_ns = P1 ^ 6;
-  16          sbit led_green_we = P2 ^ 6;
-  17          sbit led_yellow_we = P2 ^ 5;
-  18          sbit led_red_we = P2 ^ 4;
-  19          
-  20          #endif
-  21          
-  22          #ifndef LED_SCREEN
-  23          #define LED_SCREEN P0
-  24          uint_16 num_code[] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
-  25          sbit cn_we_dec = P2 ^ 0; // 东西方向数字十位
-  26          sbit cn_we_one = P2 ^ 1; // 东西方向数字个位
-  27          sbit cn_ns_dec = P2 ^ 2; // 南北方向数字十位
-  28          sbit cn_ns_one = P2 ^ 3; // 南北方向数字个位
-  29          #endif
-  30          
-  31          #ifndef KEY_CONTROLLER
-  32          #define KEY_CONTROLLER
-  33          
-  34          #define KEY_START_PRESS 1
-  35          #define KEY_STOP_PRESS 2
-  36          #define KEY_ADD_TIME_PRESS 3
-  37          #define KEY_SUB_TIME_PRESS 4
-  38          #define NO_PRESS 0
-  39          
-  40          sbit KEY_START = P1 ^ 0;
-  41          sbit KEY_STOP = P1 ^ 1;
-  42          sbit KEY_ADD_TIME = P1 ^ 2;
-  43          sbit KEY_SUB_TIME = P1 ^ 3;
-  44          
-  45          #endif
-  46          
-  47          // 函数声明
-  48          void delay_us(uint_16 us);
-  49          void time0_init(void);
-  50          void display(void);
-  51          void screen_init(void);
-  52          void init(void);
-  53          void led_controller(void);
-  54          void key_controller(void);
-C51 COMPILER V9.01   MAIN                                                                  10/09/2024 19:26:59 PAGE 2   
+   9          #define DELAY_TIME 50           // 默认延时时长
+  10          #define LED_YELLOW_TIME 3       // 黄灯持续时长
+  11          #define LED_RED_DEFAULT_TIME 25 // 红绿灯间隔时间
+  12          #define LED_GREEN_MIN_TIME 15   // 红绿灯最小间隔时间
+  13          #define LED_TIME_ADD_STEP 5     // 加时步长
+  14          #define LED_TIME_SUB_STEP 5     // 减时步长
+  15          // LED灯的控制引脚
+  16          sbit led_green_ns = P1 ^ 4;
+  17          sbit led_yellow_ns = P1 ^ 5;
+  18          sbit led_red_ns = P1 ^ 6;
+  19          sbit led_green_we = P2 ^ 6;
+  20          sbit led_yellow_we = P2 ^ 5;
+  21          sbit led_red_we = P2 ^ 4;
+  22          uint_16 sec_ns_step = LED_RED_DEFAULT_TIME;
+  23          uint_16 sec_we_step = LED_RED_DEFAULT_TIME - LED_YELLOW_TIME;
+  24          uint_16 sec_ns;
+  25          uint_16 sec_we;
+  26          #endif
+  27          
+  28          // 数码管相关配置
+  29          #ifndef LED_SCREEN
+  30          #define LED_SCREEN P0
+  31          uint_16 num_code[] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+  32          sbit cn_we_dec = P2 ^ 0; // 东西方向数字十位
+  33          sbit cn_we_one = P2 ^ 1; // 东西方向数字个位
+  34          sbit cn_ns_dec = P2 ^ 2; // 南北方向数字十位
+  35          sbit cn_ns_one = P2 ^ 3; // 南北方向数字个位
+  36          #endif
+  37          // 按键相关配置
+  38          #ifndef KEY_CONTROLLER
+  39          #define KEY_CONTROLLER
+  40          
+  41          #define KEY_START_PRESS 1
+  42          #define KEY_STOP_PRESS 2
+  43          #define KEY_ADD_TIME_PRESS 3
+  44          #define KEY_SUB_TIME_PRESS 4
+  45          #define NO_PRESS 0
+  46          // 按键监听引脚
+  47          sbit KEY_START = P1 ^ 0;
+  48          sbit KEY_STOP = P1 ^ 1;
+  49          sbit KEY_ADD_TIME = P1 ^ 2;
+  50          sbit KEY_SUB_TIME = P1 ^ 3;
+  51          
+  52          #endif
+  53          
+  54          // 函数声明
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 2   
 
-  55          void swap(int_16 *a, int_16 *b);
-  56          
-  57          uchar_8 key_scan(void);
-  58          
-  59          void main()
-  60          {
-  61   1          init();
-  62   1          while (1)
-  63   1          {
-  64   2              key_controller();
-  65   2              display();
-  66   2          }
-  67   1      }
-  68          
-  69          /**
-  70           *
-  71           * *******************************************************************************************************
+  55          /**
+  56           * 初始化函数，封装了程序运行前所需的各种初始化操作，包括计时器0初始化、
+             -数码管初始化、LED初始化等
+  57           */
+  58          void init(void);
+  59          /**
+  60           * 定时器0初始化（TR0=0）
+  61           */
+  62          void time0_init(void);
+  63          /**
+  64           * 数码管初始化
+  65           */
+  66          void screen_init(void);
+  67          /**
+  68           * 延时函数
+  69           */
+  70          void delay_us(uint_16 us);
+  71          /**
+  72           * 按键扫描函数
+  73           * @return KEY_START_PRESS-启动按键按下
+  74           *         KEY_STOP_PRESS-急停按键按下
+  75           *         KEY_ADD_TIME_PRESS-加时按键按下
+  76           *         KEY_SUB_TIME_PRESS-减时按键按下
+  77           *         NO_PRESS-没有按键按下
+  78           */
+  79          uchar_8 key_scan(void);
+  80          /**
+  81           * LED控制函数，控制各个LED灯的亮灭
+  82           */
+  83          void led_controller(void);
+  84          /**
+  85           * 按键响应函数，处理各个按键按下后的事件
+  86           */
+  87          void key_controller(void);
+  88          /**
+  89           * 简单的值交换函数，用于交换两个变量的值
+  90           * @param *a 指向uint_16类型变量的指针变量
+  91           * @param *b 指向uint_16类型变量的指针变量
+  92           */
+  93          void swap(uint_16 *a, uint_16 *b);
+  94          /**
+  95           * 数码管显示函数
+  96           */
+  97          void display(void);
+  98          
+  99          // 主函数
+ 100          void main()
+ 101          {
+ 102   1          init();
+ 103   1          while (1)
+ 104   1          {
+ 105   2              key_controller();
+ 106   2              display();
+ 107   2          }
+ 108   1      }
+ 109          
+ 110          /**
+ 111           *
+ 112           * *******************************************************************************************************
              -*
-  72           */
-  73          
-  74          void init(void)
-  75          {
-  76   1          screen_init();
-  77   1          time0_init();
-  78   1      }
-  79          
-  80          void screen_init(void)
-  81          {
-  82   1          sec_ns = sec_ns_step;
-  83   1          sec_we = sec_we_step;
-  84   1      }
-  85          
-  86          void time0_init(void)
-  87          {
-  88   1          TMOD |= 0X01; // 选择为定时器 0 模式，工作方式 1
-  89   1          TH0 = 0XFC;   // 给定时器赋初值，定时 1ms
-  90   1          TL0 = 0X18;
-  91   1          ET0 = 1; // 打开定时器 0 中断允许
-  92   1          EA = 1;  // 打开总中断
-  93   1          TR0 = 0; // 关闭定时器
-  94   1      }
-  95          
-  96          void key_controller(void)
-  97          {
-  98   1          switch (key_scan())
-  99   1          {
- 100   2          case KEY_START_PRESS:
- 101   2              TR0 = 1;
- 102   2              break;
- 103   2          case KEY_STOP_PRESS:
- 104   2              TR0 = 0;
- 105   2              break;
- 106   2          case KEY_ADD_TIME_PRESS:
- 107   2              sec_ns_step += 5;
- 108   2              sec_we_step += 5;
- 109   2              sec_ns += 5;
- 110   2              sec_we += 5;
- 111   2              break;
- 112   2          case KEY_SUB_TIME_PRESS:
- 113   2              if (sec_ns_step > 15 && sec_we_step > 15)
- 114   2              {
- 115   3                  sec_ns_step -= 5;
-C51 COMPILER V9.01   MAIN                                                                  10/09/2024 19:26:59 PAGE 3   
+ 113           */
+ 114          
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 3   
 
- 116   3                  sec_we_step -= 5;
- 117   3              }
- 118   2              break;
- 119   2          }
- 120   1      }
- 121          
- 122          void led_controller(void)
- 123          {
- 124   1          if ((sec_ns_step > sec_we_step ? sec_ns : sec_we) > 3)
- 125   1          {
- 126   2              if (sec_ns_step > sec_we_step)
- 127   2              {
- 128   3                  led_red_ns = 1;
- 129   3                  led_green_ns = 0;
- 130   3                  led_yellow_ns = 0;
- 131   3                  led_red_we = 0;
- 132   3                  led_green_we = 1;
- 133   3                  led_yellow_we = 0;
- 134   3              }
- 135   2              else
- 136   2              {
- 137   3                  led_red_ns = 0;
- 138   3                  led_green_ns = 1;
- 139   3                  led_yellow_ns = 0;
- 140   3                  led_red_we = 1;
- 141   3                  led_green_we = 0;
- 142   3                  led_yellow_we = 0;
- 143   3              }
- 144   2          }
- 145   1          else
- 146   1          {
- 147   2              if (sec_ns_step > sec_we_step)
- 148   2              {
- 149   3                  led_red_ns = 1;
- 150   3                  led_green_ns = 0;
- 151   3                  led_yellow_ns = 0;
- 152   3                  led_red_we = 0;
- 153   3                  led_green_we = 0;
- 154   3                  led_yellow_we = 1;
- 155   3              }
- 156   2              else
- 157   2              {
- 158   3                  led_red_ns = 0;
- 159   3                  led_green_ns = 0;
- 160   3                  led_yellow_ns = 1;
- 161   3                  led_red_we = 1;
- 162   3                  led_green_we = 0;
- 163   3                  led_yellow_we = 0;
- 164   3              }
- 165   2          }
- 166   1      }
- 167          
- 168          void time0() interrupt 1
- 169          {
- 170   1          static uint_16 count_ms = 0;
- 171   1          TH0 = 0XFC;
- 172   1          TL0 = 0X18;
- 173   1          count_ms++;
- 174   1          if (count_ms == 1000)
- 175   1          {
- 176   2              count_ms = 0;
- 177   2              sec_we--;
-C51 COMPILER V9.01   MAIN                                                                  10/09/2024 19:26:59 PAGE 4   
+ 115          void init(void)
+ 116          {
+ 117   1          screen_init();
+ 118   1          time0_init();
+ 119   1      }
+ 120          
+ 121          void screen_init(void)
+ 122          {
+ 123   1          sec_ns = sec_ns_step;
+ 124   1          sec_we = sec_we_step;
+ 125   1      }
+ 126          
+ 127          void time0_init(void)
+ 128          {
+ 129   1          TMOD |= 0X01; // 选择为定时器 0 模式，工作方式 1
+ 130   1          TH0 = 0XFC;   // 给定时器赋初值，定时 1ms
+ 131   1          TL0 = 0X18;
+ 132   1          ET0 = 1; // 打开定时器 0 中断允许
+ 133   1          EA = 1;  // 打开总中断
+ 134   1          TR0 = 0; // 关闭定时器
+ 135   1      }
+ 136          
+ 137          void time0() interrupt 1
+ 138          {
+ 139   1          static uint_16 count_ms = 0;
+ 140   1          TH0 = 0XFC;
+ 141   1          TL0 = 0X18;
+ 142   1          count_ms++;
+ 143   1          if (count_ms == 1000)
+ 144   1          {
+ 145   2              count_ms = 0;
+ 146   2              sec_we--;
+ 147   2              sec_ns--;
+ 148   2              if ((sec_ns_step > sec_we_step ? sec_we : sec_ns) == 0)
+ 149   2              {
+ 150   3                  if ((sec_ns_step > sec_we_step ? sec_ns : sec_we) == LED_YELLOW_TIME)
+ 151   3                  {
+ 152   4                      if (sec_ns_step > sec_we_step)
+ 153   4                          sec_we = LED_YELLOW_TIME;
+ 154   4                      else
+ 155   4                          sec_ns = LED_YELLOW_TIME;
+ 156   4                  }
+ 157   3                  else
+ 158   3                  {
+ 159   4                      swap(&sec_ns_step, &sec_we_step);
+ 160   4                      screen_init();
+ 161   4                  }
+ 162   3              }
+ 163   2              led_controller();
+ 164   2          }
+ 165   1      }
+ 166          
+ 167          void key_controller(void)
+ 168          {
+ 169   1          switch (key_scan())
+ 170   1          {
+ 171   2          case KEY_START_PRESS:
+ 172   2              TR0 = 1;
+ 173   2              break;
+ 174   2          case KEY_STOP_PRESS:
+ 175   2              TR0 = 0;
+ 176   2              break;
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 4   
 
- 178   2              sec_ns--;
- 179   2              if ((sec_ns_step > sec_we_step ? sec_we : sec_ns) == 0)
- 180   2              {
- 181   3                  if ((sec_ns_step > sec_we_step ? sec_ns : sec_we) == 3)
- 182   3                  {
- 183   4                      if (sec_ns_step > sec_we_step)
- 184   4                      {
- 185   5                          sec_we = 3;
- 186   5                      }
- 187   4                      else
- 188   4                      {
- 189   5                          sec_ns = 3;
- 190   5                      }
- 191   4                  }
- 192   3                  else
- 193   3                  {
- 194   4                      swap(&sec_ns_step, &sec_we_step);
- 195   4                      screen_init();
- 196   4                  }
- 197   3              }
- 198   2              led_controller();
- 199   2          }
- 200   1      }
- 201          
- 202          void display(void)
- 203          {
- 204   1          cn_we_dec = 1;
- 205   1          cn_we_one = 0;
- 206   1          cn_ns_dec = 0;
- 207   1          cn_ns_one = 0;
- 208   1          LED_SCREEN = ~num_code[sec_we / 10];
- 209   1          delay_us(50);
- 210   1          LED_SCREEN = 0xff;
- 211   1          cn_we_dec = 0;
- 212   1          cn_we_one = 1;
- 213   1          cn_ns_dec = 0;
- 214   1          cn_ns_one = 0;
- 215   1          LED_SCREEN = ~num_code[sec_we % 10];
- 216   1          delay_us(50);
- 217   1          LED_SCREEN = 0xff;
- 218   1          cn_we_dec = 0;
- 219   1          cn_we_one = 0;
- 220   1          cn_ns_dec = 1;
- 221   1          cn_ns_one = 0;
- 222   1          LED_SCREEN = ~num_code[sec_ns / 10];
- 223   1          delay_us(50);
- 224   1          LED_SCREEN = 0xff;
- 225   1          cn_we_dec = 0;
- 226   1          cn_we_one = 0;
- 227   1          cn_ns_dec = 0;
- 228   1          cn_ns_one = 1;
- 229   1          LED_SCREEN = ~num_code[sec_ns % 10];
- 230   1          delay_us(50);
- 231   1          LED_SCREEN = 0xff;
- 232   1      }
- 233          
- 234          uchar_8 key_scan(void)
- 235          {
- 236   1          static uchar_8 tag = 0;
- 237   1          if (tag == 0 && (KEY_START == 0 || KEY_STOP == 0 || KEY_ADD_TIME == 0 || KEY_SUB_TIME == 0))
- 238   1          {
- 239   2              tag = 1;
-C51 COMPILER V9.01   MAIN                                                                  10/09/2024 19:26:59 PAGE 5   
+ 177   2          case KEY_ADD_TIME_PRESS:
+ 178   2              sec_ns_step += LED_TIME_ADD_STEP;
+ 179   2              sec_we_step += LED_TIME_ADD_STEP;
+ 180   2              sec_ns += LED_TIME_ADD_STEP;
+ 181   2              sec_we += LED_TIME_ADD_STEP;
+ 182   2              break;
+ 183   2          case KEY_SUB_TIME_PRESS:
+ 184   2              if (sec_ns_step > LED_GREEN_MIN_TIME && sec_we_step > LED_GREEN_MIN_TIME)
+ 185   2              {
+ 186   3                  sec_ns_step -= LED_TIME_SUB_STEP;
+ 187   3                  sec_we_step -= LED_TIME_SUB_STEP;
+ 188   3              }
+ 189   2              break;
+ 190   2          }
+ 191   1      }
+ 192          
+ 193          void led_controller(void)
+ 194          {
+ 195   1          if ((sec_ns_step > sec_we_step ? sec_ns : sec_we) > LED_YELLOW_TIME)
+ 196   1          {
+ 197   2              if (sec_ns_step > sec_we_step)
+ 198   2              {
+ 199   3                  led_red_ns = 1;
+ 200   3                  led_green_ns = 0;
+ 201   3                  led_yellow_ns = 0;
+ 202   3                  led_red_we = 0;
+ 203   3                  led_green_we = 1;
+ 204   3                  led_yellow_we = 0;
+ 205   3              }
+ 206   2              else
+ 207   2              {
+ 208   3                  led_red_ns = 0;
+ 209   3                  led_green_ns = 1;
+ 210   3                  led_yellow_ns = 0;
+ 211   3                  led_red_we = 1;
+ 212   3                  led_green_we = 0;
+ 213   3                  led_yellow_we = 0;
+ 214   3              }
+ 215   2          }
+ 216   1          else
+ 217   1          {
+ 218   2              if (sec_ns_step > sec_we_step)
+ 219   2              {
+ 220   3                  led_red_ns = 1;
+ 221   3                  led_green_ns = 0;
+ 222   3                  led_yellow_ns = 0;
+ 223   3                  led_red_we = 0;
+ 224   3                  led_green_we = 0;
+ 225   3                  led_yellow_we = 1;
+ 226   3              }
+ 227   2              else
+ 228   2              {
+ 229   3                  led_red_ns = 0;
+ 230   3                  led_green_ns = 0;
+ 231   3                  led_yellow_ns = 1;
+ 232   3                  led_red_we = 1;
+ 233   3                  led_green_we = 0;
+ 234   3                  led_yellow_we = 0;
+ 235   3              }
+ 236   2          }
+ 237   1      }
+ 238          
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 5   
 
- 240   2              display();
- 241   2              if (KEY_START == 0)
- 242   2              {
- 243   3                  return KEY_START_PRESS;
- 244   3              }
- 245   2              else if (KEY_STOP == 0)
- 246   2              {
- 247   3                  return KEY_STOP_PRESS;
- 248   3              }
- 249   2              else if (KEY_ADD_TIME == 0)
- 250   2              {
- 251   3                  return KEY_ADD_TIME_PRESS;
- 252   3              }
- 253   2              else if (KEY_SUB_TIME == 0)
- 254   2              {
- 255   3                  return KEY_SUB_TIME_PRESS;
- 256   3              }
- 257   2          }
- 258   1          else if (KEY_START == 1 && KEY_STOP == 1 && KEY_ADD_TIME == 1 && KEY_SUB_TIME == 1)
- 259   1          {
- 260   2              tag = 0;
- 261   2          }
- 262   1          return NO_PRESS;
- 263   1      }
- 264          
- 265          void delay_us(uint_16 us)
- 266          {
- 267   1          while (us--)
- 268   1              ;
+ 239          void display(void)
+ 240          {
+ 241   1          cn_we_dec = 1;
+ 242   1          cn_we_one = 0;
+ 243   1          cn_ns_dec = 0;
+ 244   1          cn_ns_one = 0;
+ 245   1          LED_SCREEN = ~num_code[sec_we / 10];
+ 246   1          delay_us(DELAY_TIME);
+ 247   1          LED_SCREEN = 0xff;
+ 248   1          cn_we_dec = 0;
+ 249   1          cn_we_one = 1;
+ 250   1          cn_ns_dec = 0;
+ 251   1          cn_ns_one = 0;
+ 252   1          LED_SCREEN = ~num_code[sec_we % 10];
+ 253   1          delay_us(DELAY_TIME);
+ 254   1          LED_SCREEN = 0xff;
+ 255   1          cn_we_dec = 0;
+ 256   1          cn_we_one = 0;
+ 257   1          cn_ns_dec = 1;
+ 258   1          cn_ns_one = 0;
+ 259   1          LED_SCREEN = ~num_code[sec_ns / 10];
+ 260   1          delay_us(DELAY_TIME);
+ 261   1          LED_SCREEN = 0xff;
+ 262   1          cn_we_dec = 0;
+ 263   1          cn_we_one = 0;
+ 264   1          cn_ns_dec = 0;
+ 265   1          cn_ns_one = 1;
+ 266   1          LED_SCREEN = ~num_code[sec_ns % 10];
+ 267   1          delay_us(DELAY_TIME);
+ 268   1          LED_SCREEN = 0xff;
  269   1      }
  270          
- 271          void swap(int_16 *a, int_16 *b)
+ 271          uchar_8 key_scan(void)
  272          {
- 273   1          int_16 buf = *a;
- 274   1          *a = *b;
- 275   1          *b = buf;
- 276   1      }
+ 273   1          static uchar_8 tag = 0;
+ 274   1          if (tag == 0 && (KEY_START == 0 || KEY_STOP == 0 || KEY_ADD_TIME == 0 || KEY_SUB_TIME == 0))
+ 275   1          {
+ 276   2              tag = 1;
+ 277   2              display();
+ 278   2              if (KEY_START == 0)
+ 279   2              {
+ 280   3                  return KEY_START_PRESS;
+ 281   3              }
+ 282   2              else if (KEY_STOP == 0)
+ 283   2              {
+ 284   3                  return KEY_STOP_PRESS;
+ 285   3              }
+ 286   2              else if (KEY_ADD_TIME == 0)
+ 287   2              {
+ 288   3                  return KEY_ADD_TIME_PRESS;
+ 289   3              }
+ 290   2              else if (KEY_SUB_TIME == 0)
+ 291   2              {
+ 292   3                  return KEY_SUB_TIME_PRESS;
+ 293   3              }
+ 294   2          }
+ 295   1          else if (KEY_START == 1 && KEY_STOP == 1 && KEY_ADD_TIME == 1 && KEY_SUB_TIME == 1)
+ 296   1          {
+ 297   2              tag = 0;
+ 298   2          }
+ 299   1          return NO_PRESS;
+ 300   1      }
+C51 COMPILER V9.01   MAIN                                                                  10/09/2024 20:18:15 PAGE 6   
+
+ 301          
+ 302          void delay_us(uint_16 us)
+ 303          {
+ 304   1          while (us--)
+ 305   1              ;
+ 306   1      }
+ 307          
+ 308          void swap(uint_16 *a, uint_16 *b)
+ 309          {
+ 310   1          uint_16 buf = *a;
+ 311   1          *a = *b;
+ 312   1          *b = buf;
+ 313   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    742    ----
+   CODE SIZE        =    697    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
