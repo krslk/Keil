@@ -1,0 +1,18 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+e:\KeilCode_Git\Keil\实验\C51\6-静态动态数码管-2\template.uvproj
+Project File Date:  10/05/2024
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(102): warning C280: 'r': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+Program Size: data=41.0 xdata=0 code=634
+creating hex file from "c51"...
+"c51" - 0 Error(s), 2 Warning(s).
