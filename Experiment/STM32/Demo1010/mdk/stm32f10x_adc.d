@@ -2,7 +2,7 @@
 .\mdk\stm32f10x_adc.o: .\lib\inc\stm32f10x_adc.h
 .\mdk\stm32f10x_adc.o: .\cmsis\stm32f10x.h
 .\mdk\stm32f10x_adc.o: .\cmsis\core_cm3.h
-.\mdk\stm32f10x_adc.o: C:\Keil_v5_Arm\ARM\ARMCC\Bin\..\include\stdint.h
+.\mdk\stm32f10x_adc.o: E:\Keil_v5_arm\ARM\ARMCC\Bin\..\include\stdint.h
 .\mdk\stm32f10x_adc.o: .\cmsis\system_stm32f10x.h
 .\mdk\stm32f10x_adc.o: .\cmsis\stm32f10x_conf.h
 .\mdk\stm32f10x_adc.o: .\lib\inc\stm32f10x_adc.h

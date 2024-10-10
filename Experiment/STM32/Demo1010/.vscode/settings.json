@@ -44,7 +44,8 @@
     "C:\\Keil_v5_Arm\\ARM\\ARMCC\\include\\rw",
     "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\user",
     "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\lib\\src",
-    "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\startup"
+    "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\startup",
+    "D:\\Keil_v5_stm32\\ARM"
   ],
   "C_Cpp_Runner.includeSearch": [
     "*",
