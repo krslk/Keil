@@ -7,18 +7,18 @@
 
   <Targets>
     <Target>
-      <TargetName>Demo</TargetName>
+      <TargetName>Template</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>AT89F52</Device>
+          <Device>AT89C52</Device>
           <Vendor>Atmel</Vendor>
-          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x1FFF) CLOCK(24000000)</Cpu>
+          <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
-          <DeviceId>3035</DeviceId>
+          <DeviceId>2980</DeviceId>
           <RegisterFile>REGX52.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
@@ -30,10 +30,10 @@
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
           <UseEnv>0</UseEnv>
-          <BinPath>C:\Keil_v5\C51\BIN\</BinPath>
+          <BinPath></BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
+          <RegisterFilePath>Atmel\</RegisterFilePath>
           <DBRegisterFilePath>Atmel\</DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
@@ -42,14 +42,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\object\</OutputDirectory>
-          <OutputName>Demo</OutputName>
+          <OutputDirectory>.\</OutputDirectory>
+          <OutputName>Template</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\listing\</ListingPath>
+          <ListingPath>.\</ListingPath>
           <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -306,7 +306,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>E:\Desktop\template\driver</IncludePath>
             </VariousControls>
           </Ax51>
           <Lx51>
@@ -344,24 +344,22 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>startup</GroupName>
+          <GroupName>user</GroupName>
           <Files>
             <File>
               <FileName>STARTUP.A51</FileName>
               <FileType>2</FileType>
-              <FilePath>.\startup\STARTUP.A51</FilePath>
+              <FilePath>.\STARTUP.A51</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>E:\Desktop\template\user\main.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>user</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user\main.c</FilePath>
-            </File>
-          </Files>
+          <GroupName>driver</GroupName>
         </Group>
       </Groups>
     </Target>

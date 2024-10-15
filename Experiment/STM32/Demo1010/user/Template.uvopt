@@ -21,13 +21,13 @@
   </DaveTm>
 
   <Target>
-    <TargetName>Demo</TargetName>
+    <TargetName>Template</TargetName>
     <ToolsetNumber>0x0</ToolsetNumber>
     <ToolsetName>MCS-51</ToolsetName>
     <TargetOption>
       <CLK51>24000000</CLK51>
       <OPTTT>
-        <gFlags>0</gFlags>
+        <gFlags>1</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
@@ -43,7 +43,7 @@
         <PageWidth>120</PageWidth>
         <PageLength>65</PageLength>
         <TabStop>8</TabStop>
-        <ListingPath>.\listing\</ListingPath>
+        <ListingPath>.\</ListingPath>
       </OPTLEX>
       <ListingPage>
         <CreateCListing>1</CreateCListing>
@@ -75,7 +75,19 @@
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>0</CpuCode>
+      <CpuCode>255</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>Data Sheet</Title>
+          <Path>DATASHTS\ATMEL\AT89C52_DS.PDF</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>Instruction Set Manual</Title>
+          <Path>DATASHTS\ATMEL\AT_C51ISM.PDF</Path>
+        </Book>
+      </Books>
       <DllOpt>
         <SimDllName>S8051.DLL</SimDllName>
         <SimDllArguments></SimDllArguments>
@@ -118,26 +130,9 @@
         <tIfile></tIfile>
         <pMon></pMon>
       </DebugOpt>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>1</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
       <DebugFlag>
         <trace>0</trace>
-        <periodic>0</periodic>
+        <periodic>1</periodic>
         <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
@@ -167,8 +162,8 @@
   </Target>
 
   <Group>
-    <GroupName>startup</GroupName>
-    <tvExp>0</tvExp>
+    <GroupName>user</GroupName>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -182,30 +177,30 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\startup\STARTUP.A51</PathWithFileName>
+      <PathWithFileName>.\STARTUP.A51</PathWithFileName>
       <FilenameWithoutPath>STARTUP.A51</FilenameWithoutPath>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>user</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
     <File>
-      <GroupNumber>0</GroupNumber>
+      <GroupNumber>1</GroupNumber>
       <FileNumber>0</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>65</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>5</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\user\main.c</PathWithFileName>
+      <PathWithFileName>E:\Desktop\template\user\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
     </File>
+  </Group>
+
+  <Group>
+    <GroupName>driver</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
   </Group>
 
   <WinLayout>
@@ -1552,10 +1547,10 @@
       <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
-          <Name>.\user\main.c</Name>
-          <ColumnNumber>7</ColumnNumber>
+          <Name>E:\Desktop\template\user\main.c</Name>
+          <ColumnNumber>65</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>2</CurrentLine>
+          <CurrentLine>5</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
