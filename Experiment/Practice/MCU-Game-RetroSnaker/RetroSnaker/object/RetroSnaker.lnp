@@ -1,0 +1,4 @@
+".\object\STARTUP.obj",
+".\object\main.obj" 
+TO ".\object\RetroSnaker" 
+PRINT(".\listing\RetroSnaker.m51") RAMSIZE(256) 

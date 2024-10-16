@@ -1,0 +1,11 @@
+Build target 'Template'
+compiling main.c...
+MAIN.C(20): warning C173: missing return-expression
+MAIN.C(20): warning C290: missing return value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEY_MATRIX_SCAN?MAIN
+
+Program Size: data=27.0 xdata=0 code=171
+creating hex file from "Template"...
+"Template" - 0 Error(s), 3 Warning(s).
