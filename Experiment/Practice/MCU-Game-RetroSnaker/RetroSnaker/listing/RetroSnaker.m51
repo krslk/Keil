@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/16/2024  23:41:43  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/16/2024  23:45:10  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ SEGMENT                              DATA_GROUP
 
 SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/16/2024  23:41:43  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/16/2024  23:45:10  PAGE 2
 
 
   VALUE           TYPE          NAME
@@ -103,25 +103,15 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   B:00B0H.6       PUBLIC        SRCLK
-  D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
-  D:00A8H         PUBLIC        IE
-  D:00B8H         PUBLIC        IP
   C:08C0H         PUBLIC        main
-  B:00C8H.5       PUBLIC        RCLK
-  D:0098H         PUBLIC        SCON
-  D:0088H         PUBLIC        TCON
+  B:00B0H.5       PUBLIC        RCLK
   C:08F5H         PUBLIC        _delay_10us
-  D:00C8H         PUBLIC        T2CON
   D:0008H         PUBLIC        i
   B:00B0H.4       PUBLIC        SER
   D:000AH         PUBLIC        ghc595_buf
-  D:00D0H         PUBLIC        PSW
   C:088CH         PUBLIC        _hc595_write_data
   -------         PROC          _HC595_WRITE_DATA
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/16/2024  23:41:43  PAGE 3
-
-
   D:0012H         SYMBOL        dat
   -------         DO            
   D:0013H         SYMBOL        i
@@ -129,6 +119,9 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
   C:088CH         LINE#         12
   C:088EH         LINE#         13
   C:088EH         LINE#         14
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/16/2024  23:45:10  PAGE 3
+
+
   C:0891H         LINE#         15
   C:0893H         LINE#         16
   C:0893H         LINE#         17

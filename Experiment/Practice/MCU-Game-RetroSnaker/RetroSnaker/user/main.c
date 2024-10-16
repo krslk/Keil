@@ -1,10 +1,10 @@
-#include "REG52.H"
+#include "reg51.h"
 
 typedef unsigned char uchar8_t;
 typedef unsigned int uint16_t;
 
 sbit SRCLK = P3 ^ 6; // 移位寄存器时钟输入
-// sbit RCLK = P3 ^ 5;  // 存储寄存器时钟输入
+sbit RCLK = P3 ^ 5;  // 存储寄存器时钟输入
 sbit SER = P3 ^ 4;   // 串行数据输入
 uchar8_t ghc595_buf[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
 
