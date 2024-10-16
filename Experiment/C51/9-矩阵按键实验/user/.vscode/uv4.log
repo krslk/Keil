@@ -1,12 +1,3 @@
-<html>
-<body>
-<pre>
-<h1>µVision Build Log</h1>
-<h2>Project:</h2>
-e:\KeilCode_Git\Keil\Experiment\C51\9-¾ØÕó°´¼üÊµÑé\user\Template.uvproj
-Project File Date:  10/15/2024
-
-<h2>Output:</h2>
 Build target 'Template'
 compiling main.c...
 MAIN.C(20): warning C173: missing return-expression
@@ -14,6 +5,7 @@ MAIN.C(20): warning C290: missing return value
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?KEY_MATRIX_SCAN?MAIN
+
 Program Size: data=27.0 xdata=0 code=171
 creating hex file from "Template"...
 "Template" - 0 Error(s), 3 Warning(s).

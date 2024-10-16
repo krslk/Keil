@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   MAIN                                                                  10/15/2024 21:14:28 PAGE 1   
+C51 COMPILER V9.01   MAIN                                                                  10/15/2024 22:01:14 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
@@ -7,22 +7,39 @@ COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c BROWSE INCDIR(..\driver) 
 
 line level    source
 
-   1          #include <REGX52.H>
+   1          #include <reg52.h>
    2          
-   3          void main(){
-   4   1        P2=0x00;
-   5   1      }
+   3          typedef unsigned int uint16_t;
+   4          typedef unsigned char uchar8_t;
+   5          
+   6          #define MATRIX_KEY_PORT P1
+   7          
+   8          // 共阴极数码管显示0~F的段码数据
+   9          uchar8_t gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+  10                                    0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
+  11          
+  12          void main()
+  13          {
+  14   1        P2 = 0x00;
+  15   1      }
+  16          
+  17          uint16_t key_matrix_scan()
+  18          {
+  19   1        uchar8_t key_value = 0;
+  20   1      }
+*** WARNING C173 IN LINE 20 OF MAIN.C: missing return-expression
+*** WARNING C290 IN LINE 20 OF MAIN.C: missing return value
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =      4    ----
+   CODE SIZE        =      8    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =     17       1
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

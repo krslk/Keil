@@ -37,7 +37,11 @@
   "C_Cpp_Runner.warningsAsError": false,
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.includePaths": [
+    "C:\\Keil_v5\\C51\\INC",
+    "e:\\KeilCode_Git\\Keil\\实验\\C51\\16.1-外部中断0实验\\startup",
+    "e:\\KeilCode_Git\\Keil\\实验\\C51\\16.1-外部中断0实验\\user"
+  ],
   "C_Cpp_Runner.includeSearch": [
     "*",
     "**/*"
@@ -57,7 +61,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "regx52.h": "c",
     "REG52.H": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
