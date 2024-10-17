@@ -294,7 +294,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\device</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -360,6 +360,31 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\user\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>device</GroupName>
+          <Files>
+            <File>
+              <FileName>device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\device.c</FilePath>
+            </File>
+            <File>
+              <FileName>device.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\device\device.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_draw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\game_draw.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_draw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\device\game_draw.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,54 +1,37 @@
 #include "reg51.h"
+#include "device.h"
+#include "game_draw.h"
 
-typedef unsigned char uchar8_t;
-typedef unsigned int uint16_t;
+#ifndef SMG_A_DP_PORT
+#define SMG_A_DP_PORT P0 // 使用宏定义数码管段码口
+uchar8_t gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+                          0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
+#endif
 
-sbit SRCLK = P3 ^ 6; // 移位寄存器时钟输入
-sbit RCLK = P3 ^ 5;  // 存储寄存器时钟输入
-sbit SER = P3 ^ 4;   // 串行数据输入
-uchar8_t ghc595_buf[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
-
-void delay_10us(uint16_t s);
-void hc595_write_data(uchar8_t dat)
-{
-    uchar8_t i = 0;
-    for (i = 0; i < 8; i++)
-    {
-        SER = dat >> 7;
-        dat <<= 1;
-        SRCLK = 0;
-        delay_10us(1);
-        SRCLK = 1;
-        delay_10us(1);
-    }
-    RCLK = 1;
-    delay_10us(1);
-    RCLK = 0;
-}
-
-uint16_t i = 0;
+sbit led = P2 ^ 7; // 程序运行测试
+Snake snake;
 
 void main()
 {
-    P0 = 0x80;
+    snake_init(&snake);
+    time0_init();
     while (1)
     {
-        for (i = 0; i < 8; i++)
-        {
-            hc595_write_data(0x00); // 消除前面寄存器缓存数据
-            hc595_write_data(ghc595_buf[i]); // 写入新的数据
-            delay_10us(50000); // 延时500ms
-        }
+        // snake_move(&snake);
+        // delay_10us(500000);
     }
 }
 
-/**
- * **************************************************************************************************************
- */
-
-void delay_10us(uint16_t s) //@11.0592MHz
+void time0() interrupt 1
 {
-    uint16_t i = 2 * s;
-    while (--i)
-        ;
+    static uint16_t time0_count = 0; // 定义静态变量i
+    TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
+    TL0 = 0X18;
+    time0_count++;
+    if (time0_count >= 500)
+    {
+        time0_count = 0;
+        led = !led;
+        led_maxtir_dispaly(getUcharFromSnake(snake));
+    }
 }

@@ -1,78 +1,58 @@
-C51 COMPILER V9.01   MAIN                                                                  10/16/2024 23:45:10 PAGE 1   
+C51 COMPILER V9.01   MAIN                                                                  10/17/2024 17:34:45 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\object\main.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\listing\main.lst) OBJECT(.
-                    -\object\main.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\main.c BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\m
+                    -ain.lst) OBJECT(.\object\main.obj)
 
 line level    source
 
    1          #include "reg51.h"
-   2          
-   3          typedef unsigned char uchar8_t;
-   4          typedef unsigned int uint16_t;
-   5          
-   6          sbit SRCLK = P3 ^ 6; // 移位寄存器时钟输入
-   7          sbit RCLK = P3 ^ 5;  // 存储寄存器时钟输入
-   8          sbit SER = P3 ^ 4;   // 串行数据输入
-   9          uchar8_t ghc595_buf[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+   2          #include "device.h"
+   3          #include "game_draw.h"
+   4          
+   5          #ifndef SMG_A_DP_PORT
+   6          #define SMG_A_DP_PORT P0 // 使用宏定义数码管段码口
+   7          uchar8_t gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+   8                                    0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
+   9          #endif
   10          
-  11          void delay_10us(uint16_t s);
-  12          void hc595_write_data(uchar8_t dat)
-  13          {
-  14   1          uchar8_t i = 0;
-  15   1          for (i = 0; i < 8; i++)
-  16   1          {
-  17   2              SER = dat >> 7;
-  18   2              dat <<= 1;
-  19   2              SRCLK = 0;
-  20   2              delay_10us(1);
-  21   2              SRCLK = 1;
-  22   2              delay_10us(1);
-  23   2          }
-  24   1          RCLK = 1;
-  25   1          delay_10us(1);
-  26   1          RCLK = 0;
-  27   1      }
-  28          
-  29          uint16_t i = 0;
-  30          
-  31          void main()
-  32          {
-  33   1          P0 = 0x80;
-  34   1          while (1)
-  35   1          {
-  36   2              for (i = 0; i < 8; i++)
-  37   2              {
-  38   3                  hc595_write_data(0x00); // 消除前面寄存器缓存数据
-  39   3                  hc595_write_data(ghc595_buf[i]); // 写入新的数据
-  40   3                  delay_10us(50000); // 延时500ms
-  41   3              }
-  42   2          }
-  43   1      }
-  44          
-  45          /**
-  46           * *******************************************************************************************************
-             -*******
-  47           */
-  48          
-  49          void delay_10us(uint16_t s) //@11.0592MHz
-  50          {
-  51   1          uint16_t i = 2 * s;
-  52   1          while (--i)
-  53   1              ;
-C51 COMPILER V9.01   MAIN                                                                  10/16/2024 23:45:10 PAGE 2   
-
-  54   1      }
+  11          sbit led = P2 ^ 7; // 程序运行测试
+  12          Snake snake;
+  13          
+  14          void main()
+  15          {
+  16   1          snake_init(&snake);
+  17   1          time0_init();
+  18   1          while (1)
+  19   1          {
+  20   2              // snake_move(&snake);
+  21   2              // delay_10us(500000);
+  22   2          }
+  23   1      }
+  24          
+  25          void time0() interrupt 1
+  26          {
+  27   1          static uint16_t time0_count = 0; // 定义静态变量i
+  28   1          TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
+  29   1          TL0 = 0X18;
+  30   1          time0_count++;
+  31   1          if (time0_count >= 500)
+  32   1          {
+  33   2              time0_count = 0;
+  34   2              led = !led;
+  35   2              led_maxtir_dispaly(getUcharFromSnake(snake));
+  36   2          }
+  37   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    122    ----
+   CODE SIZE        =    126    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     10       2
+   DATA SIZE        =     54    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
