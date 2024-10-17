@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/17/2024  17:42:38  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/17/2024  23:15:09  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -32,36 +32,39 @@ LINK MAP OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0036H     UNIT         ?DT?MAIN
-            DATA    003EH     0023H     UNIT         _DATA_GROUP_
-            DATA    0061H     0009H     UNIT         ?DT?_SNAKE_POS_CHANGE?GAME_DRAW
-            DATA    006AH     0003H     UNIT         ?DT?_SNAKE_MOVE?GAME_DRAW
-            DATA    006DH     0002H     UNIT         ?DT?GAME_DRAW
-            DATA    006FH     0001H     UNIT         ?DT?DEVICE
-            IDATA   0070H     0001H     UNIT         ?STACK
+            DATA    0008H     0039H     UNIT         ?DT?MAIN
+            DATA    0041H     0036H     UNIT         _DATA_GROUP_
+            DATA    0077H     0002H     UNIT         ?DT?DEVICE
+            IDATA   0079H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     0008H                  *** GAP ***
             CODE    000BH     0003H     ABSOLUTE     
-                    000EH     07F2H                  *** GAP ***
+                    000EH     000DH                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+                    001EH     07E2H                  *** GAP ***
             CODE    0800H     01D5H     UNIT         ?C?LIB_CODE
-            CODE    09D5H     00DFH     UNIT         ?PR?_SNAKE_POS_CHANGE?GAME_DRAW
-            CODE    0AB4H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0B40H     0074H     UNIT         ?PR?MAXTIR_FLIP_SCAN?DEVICE
-            CODE    0BB4H     0070H     UNIT         ?PR?TIME0?MAIN
-            CODE    0C24H     0055H     UNIT         ?PR?GETUCHARFROMSNAKE?GAME_DRAW
-            CODE    0C79H     0052H     UNIT         ?PR?_SNAKE_MOVE?GAME_DRAW
-            CODE    0CCBH     0035H     UNIT         ?PR?_SNAKE_INIT?GAME_DRAW
-            CODE    0D00H     0034H     UNIT         ?PR?_HC595_WRITE_DATA?DEVICE
-            CODE    0D34H     001CH     UNIT         ?PR?_LED_MAXTIR_DISPALY?DEVICE
-            CODE    0D50H     001BH     UNIT         ?C_INITSEG
-            CODE    0D6BH     0015H     UNIT         ?PR?_DELAY_10US?DEVICE
-            CODE    0D80H     0010H     UNIT         ?PR?TIME0_INIT?DEVICE
-            CODE    0D90H     000EH     UNIT         ?PR?MAIN?MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 2
+            CODE    09D5H     00D8H     UNIT         ?PR?_SNAKE_POS_CHANGE?GAME_DRAW
+            CODE    0AADH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0B39H     007FH     UNIT         ?PR?MAXTIR_FLIP_SCAN?DEVICE
+            CODE    0BB8H     006BH     UNIT         ?PR?TIME1?MAIN
+            CODE    0C23H     0068H     UNIT         ?PR?TIME0?MAIN
+            CODE    0C8BH     0056H     UNIT         ?PR?SHOW_SNAKE?GAME_DRAW
+            CODE    0CE1H     0052H     UNIT         ?PR?_SNAKE_MOVE?GAME_DRAW
+            CODE    0D33H     003CH     UNIT         ?PR?_SNAKE_CHANGE_DIR?GAME_DRAW
+            CODE    0D6FH     0037H     UNIT         ?PR?_SNAKE_INIT?GAME_DRAW
+            CODE    0DA6H     0034H     UNIT         ?PR?_HC595_WRITE_DATA?DEVICE
+            CODE    0DDAH     0025H     UNIT         ?C_INITSEG
+            CODE    0DFFH     0021H     UNIT         ?PR?MAIN?MAIN
+            CODE    0E20H     001CH     UNIT         ?PR?_LED_MAXTIR_DISPALY?DEVICE
+            CODE    0E3CH     0015H     UNIT         ?PR?_DELAY_10US?DEVICE
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 2
 
 
+            CODE    0E51H     0010H     UNIT         ?PR?TIME0_INIT?DEVICE
+            CODE    0E61H     0010H     UNIT         ?PR?TIME1_INIT?DEVICE
+            CODE    0E71H     0002H     UNIT         ?CO?GAME_DRAW
 
 
 
@@ -78,19 +81,37 @@ SEGMENT                                   DATA_GROUP
 ?PR?MAIN?MAIN                           -----    -----
   +--> ?PR?_SNAKE_INIT?GAME_DRAW
   +--> ?PR?TIME0_INIT?DEVICE
+  +--> ?PR?TIME1_INIT?DEVICE
+  +--> ?PR?_SNAKE_MOVE?GAME_DRAW
+  +--> ?PR?_DELAY_10US?DEVICE
+
+?PR?_SNAKE_MOVE?GAME_DRAW               0041H    0003H
+  +--> ?PR?_SNAKE_POS_CHANGE?GAME_DRAW
+
+?PR?_SNAKE_POS_CHANGE?GAME_DRAW         0044H    0009H
 
 *** NEW ROOT ***************************************************
 
 ?PR?TIME0?MAIN                          -----    -----
-  +--> ?PR?GETUCHARFROMSNAKE?GAME_DRAW
+  +--> ?PR?MAXTIR_FLIP_SCAN?DEVICE
+  +--> ?PR?_SNAKE_CHANGE_DIR?GAME_DRAW
+
+?PR?MAXTIR_FLIP_SCAN?DEVICE             -----    -----
+  +--> ?PR?_DELAY_10US?DEVICE
+
+*** NEW ROOT ***************************************************
+
+?PR?TIME1?MAIN                          -----    -----
+  +--> ?PR?SHOW_SNAKE?GAME_DRAW
+
+?PR?SHOW_SNAKE?GAME_DRAW                004DH    0025H
+  +--> ?CO?GAME_DRAW
   +--> ?PR?_LED_MAXTIR_DISPALY?DEVICE
 
-?PR?GETUCHARFROMSNAKE?GAME_DRAW         003EH    0023H
-
-?PR?_LED_MAXTIR_DISPALY?DEVICE          003EH    0003H
+?PR?_LED_MAXTIR_DISPALY?DEVICE          0072H    0003H
   +--> ?PR?_HC595_WRITE_DATA?DEVICE
 
-?PR?_HC595_WRITE_DATA?DEVICE            0041H    0002H
+?PR?_HC595_WRITE_DATA?DEVICE            0075H    0002H
   +--> ?PR?_DELAY_10US?DEVICE
 
 
@@ -98,11 +119,14 @@ SEGMENT                                   DATA_GROUP
 SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
 
   VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 3
+
+
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0AB4H         SEGMENT       ?C_C51STARTUP
-  I:0070H         SEGMENT       ?STACK
+  C:0AADH         SEGMENT       ?C_C51STARTUP
+  I:0079H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -111,7 +135,7 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:0AB7H         SYMBOL        IDATALOOP
+  C:0AB0H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -119,290 +143,374 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
   N:0000H         SYMBOL        PPAGE
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 3
-
-
   D:0081H         SYMBOL        SP
-  C:0AB4H         SYMBOL        STARTUP1
+  C:0AADH         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0AB4H         LINE#         133
-  C:0AB6H         LINE#         134
-  C:0AB7H         LINE#         135
-  C:0AB8H         LINE#         136
-  C:0ABAH         LINE#         185
-  C:0ABDH         LINE#         196
+  C:0AADH         LINE#         133
+  C:0AAFH         LINE#         134
+  C:0AB0H         LINE#         135
+  C:0AB1H         LINE#         136
+  C:0AB3H         LINE#         185
+  C:0AB6H         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-  D:000AH         PUBLIC        snake
-  C:0D90H         PUBLIC        main
-  D:002DH         PUBLIC        gsmg_code
-  B:00A0H.7       PUBLIC        led
+  D:000CH         PUBLIC        snake
+  C:0DFFH         PUBLIC        main
+  D:002FH         PUBLIC        gsmg_code
+  D:0040H         PUBLIC        key_value
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
-  C:0BB4H         PUBLIC        time0
+  C:0C23H         PUBLIC        time0
+  C:0BB8H         PUBLIC        time1
   -------         PROC          MAIN
-  C:0D90H         LINE#         14
-  C:0D90H         LINE#         15
-  C:0D90H         LINE#         16
-  C:0D99H         LINE#         17
-  C:0D9CH         LINE#         18
-  C:0D9CH         LINE#         19
-  C:0D9CH         LINE#         22
+  C:0DFFH         LINE#         15
+  C:0DFFH         LINE#         16
+  C:0DFFH         LINE#         17
+  C:0E08H         LINE#         18
+  C:0E0BH         LINE#         19
+  C:0E0EH         LINE#         20
+  C:0E0EH         LINE#         21
+  C:0E0EH         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 4
+
+
+  C:0E17H         LINE#         23
+  C:0E1EH         LINE#         24
   -------         ENDPROC       MAIN
   -------         PROC          TIME0
   -------         DO            
   D:0008H         SYMBOL        time0_count
   -------         ENDDO         
-  C:0BB4H         LINE#         25
-  C:0BD1H         LINE#         28
-  C:0BD4H         LINE#         29
-  C:0BD7H         LINE#         30
-  C:0BDFH         LINE#         31
-  C:0BE8H         LINE#         32
-  C:0BE8H         LINE#         33
-  C:0BEEH         LINE#         34
-  C:0BF0H         LINE#         35
-  C:0C09H         LINE#         36
-  C:0C09H         LINE#         37
+  C:0C23H         LINE#         27
+  C:0C40H         LINE#         30
+  C:0C43H         LINE#         31
+  C:0C46H         LINE#         32
+  C:0C4EH         LINE#         33
+  C:0C57H         LINE#         34
+  C:0C57H         LINE#         35
+  C:0C5DH         LINE#         36
+  C:0C62H         LINE#         37
+  C:0C66H         LINE#         38
+  C:0C66H         LINE#         39
+  C:0C70H         LINE#         40
+  C:0C70H         LINE#         41
+  C:0C70H         LINE#         42
   -------         ENDPROC       TIME0
+  -------         PROC          TIME1
+  -------         DO            
+  D:000AH         SYMBOL        time1_count
+  -------         ENDDO         
+  C:0BB8H         LINE#         44
+  C:0BD5H         LINE#         47
+  C:0BD8H         LINE#         48
+  C:0BDBH         LINE#         49
+  C:0BE3H         LINE#         50
+  C:0BECH         LINE#         51
+  C:0BECH         LINE#         52
+  C:0BF2H         LINE#         53
+  C:0C08H         LINE#         54
+  C:0C08H         LINE#         55
+  -------         ENDPROC       TIME1
   -------         ENDMOD        MAIN
 
   -------         MODULE        DEVICE
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
   B:00B0H.6       PUBLIC        SRCLK
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 4
-
-
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   B:00A8H.7       PUBLIC        EA
-  C:0D34H         PUBLIC        _led_maxtir_dispaly
+  C:0E20H         PUBLIC        _led_maxtir_dispaly
   B:00B0H.5       PUBLIC        RCLK
-  C:0B40H         PUBLIC        maxtir_flip_scan
+  C:0B39H         PUBLIC        maxtir_flip_scan
   D:0089H         PUBLIC        TMOD
-  C:0D6FH         PUBLIC        _delay_10us
+  C:0E40H         PUBLIC        _delay_10us
   B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
   D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
   D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 5
+
+
   B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
   B:00B0H.4       PUBLIC        SER
-  C:0D80H         PUBLIC        time0_init
-  C:0D00H         PUBLIC        _hc595_write_data
+  C:0E51H         PUBLIC        time0_init
+  C:0E61H         PUBLIC        time1_init
+  C:0DA6H         PUBLIC        _hc595_write_data
+  -------         PROC          TIME0_INIT
+  C:0E51H         LINE#         3
+  C:0E51H         LINE#         4
+  C:0E51H         LINE#         5
+  C:0E54H         LINE#         6
+  C:0E57H         LINE#         7
+  C:0E5AH         LINE#         8
+  C:0E5CH         LINE#         9
+  C:0E5EH         LINE#         10
+  C:0E60H         LINE#         11
+  -------         ENDPROC       TIME0_INIT
+  -------         PROC          TIME1_INIT
+  C:0E61H         LINE#         13
+  C:0E61H         LINE#         14
+  C:0E61H         LINE#         15
+  C:0E64H         LINE#         16
+  C:0E67H         LINE#         17
+  C:0E6AH         LINE#         18
+  C:0E6CH         LINE#         19
+  C:0E6EH         LINE#         20
+  C:0E70H         LINE#         21
+  -------         ENDPROC       TIME1_INIT
   -------         PROC          _HC595_WRITE_DATA
-  D:0041H         SYMBOL        dat
+  D:0075H         SYMBOL        dat
   -------         DO            
-  D:0042H         SYMBOL        i
+  D:0076H         SYMBOL        i
   -------         ENDDO         
-  C:0D00H         LINE#         3
-  C:0D02H         LINE#         4
-  C:0D02H         LINE#         5
-  C:0D05H         LINE#         6
-  C:0D07H         LINE#         7
-  C:0D07H         LINE#         8
-  C:0D13H         LINE#         9
-  C:0D19H         LINE#         10
-  C:0D1BH         LINE#         11
-  C:0D1EH         LINE#         12
-  C:0D20H         LINE#         13
-  C:0D23H         LINE#         14
-  C:0D2CH         LINE#         15
-  C:0D2EH         LINE#         16
-  C:0D31H         LINE#         17
-  C:0D33H         LINE#         18
+  C:0DA6H         LINE#         23
+  C:0DA8H         LINE#         24
+  C:0DA8H         LINE#         25
+  C:0DABH         LINE#         26
+  C:0DADH         LINE#         27
+  C:0DADH         LINE#         28
+  C:0DB9H         LINE#         29
+  C:0DBFH         LINE#         30
+  C:0DC1H         LINE#         31
+  C:0DC4H         LINE#         32
+  C:0DC6H         LINE#         33
+  C:0DC9H         LINE#         34
+  C:0DD2H         LINE#         35
+  C:0DD4H         LINE#         36
+  C:0DD7H         LINE#         37
+  C:0DD9H         LINE#         38
   -------         ENDPROC       _HC595_WRITE_DATA
   -------         PROC          _LED_MAXTIR_DISPALY
-  D:003EH         SYMBOL        dat
-  C:0D34H         LINE#         20
-  C:0D3AH         LINE#         21
-  C:0D3AH         LINE#         22
-  C:0D41H         LINE#         23
-  C:0D4FH         LINE#         24
+  D:0072H         SYMBOL        dat
+  C:0E20H         LINE#         40
+  C:0E26H         LINE#         41
+  C:0E26H         LINE#         42
+  C:0E2DH         LINE#         43
+  C:0E3BH         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 6
+
+
   -------         ENDPROC       _LED_MAXTIR_DISPALY
-  C:0D6BH         SYMBOL        L?0030
+  C:0E3CH         SYMBOL        L?0030
   -------         PROC          L?0029
   -------         ENDPROC       L?0029
-  C:0D6BH         SYMBOL        L?0030
+  C:0E3CH         SYMBOL        L?0030
   -------         PROC          _DELAY_10US
   D:0006H         SYMBOL        s
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:0D6FH         LINE#         26
-  C:0D6FH         LINE#         27
-  C:0D6FH         LINE#         28
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 5
-
-
-  C:0D76H         LINE#         29
-  C:0D7FH         LINE#         31
+  C:0E40H         LINE#         46
+  C:0E40H         LINE#         47
+  C:0E40H         LINE#         48
+  C:0E47H         LINE#         49
+  C:0E50H         LINE#         51
   -------         ENDPROC       _DELAY_10US
   -------         PROC          MAXTIR_FLIP_SCAN
   -------         DO            
-  D:006FH         SYMBOL        key_value
+  D:0077H         SYMBOL        key_value
+  D:0078H         SYMBOL        key_lock
   -------         ENDDO         
-  C:0B40H         LINE#         33
-  C:0B40H         LINE#         34
-  C:0B40H         LINE#         36
-  C:0B43H         LINE#         37
-  C:0B49H         LINE#         38
-  C:0B49H         LINE#         39
-  C:0B50H         LINE#         40
-  C:0B56H         LINE#         41
-  C:0B56H         LINE#         42
-  C:0B59H         LINE#         43
-  C:0B6BH         LINE#         44
-  C:0B6BH         LINE#         45
-  C:0B6BH         LINE#         46
-  C:0B6EH         LINE#         47
-  C:0B70H         LINE#         48
-  C:0B70H         LINE#         49
-  C:0B73H         LINE#         50
-  C:0B75H         LINE#         51
-  C:0B75H         LINE#         52
-  C:0B78H         LINE#         53
-  C:0B7AH         LINE#         54
-  C:0B7AH         LINE#         55
-  C:0B7DH         LINE#         56
-  C:0B7DH         LINE#         57
-  C:0B7DH         LINE#         58
-  C:0B7DH         LINE#         59
-  C:0B80H         LINE#         60
-  C:0B93H         LINE#         61
-  C:0B93H         LINE#         62
-  C:0B93H         LINE#         63
-  C:0B96H         LINE#         64
-  C:0B98H         LINE#         65
-  C:0B98H         LINE#         66
-  C:0B9AH         LINE#         67
-  C:0B9CH         LINE#         68
-  C:0B9CH         LINE#         69
-  C:0B9EH         LINE#         70
-  C:0BA0H         LINE#         71
-  C:0BA0H         LINE#         72
-  C:0BA6H         LINE#         73
-  C:0BA6H         LINE#         74
-  C:0BA6H         LINE#         75
-  C:0BAEH         LINE#         79
-  C:0BAEH         LINE#         80
-  C:0BB1H         LINE#         81
-  C:0BB1H         LINE#         82
-  C:0BB3H         LINE#         83
+  C:0B39H         LINE#         53
+  C:0B39H         LINE#         54
+  C:0B39H         LINE#         57
+  C:0B3CH         LINE#         58
+  C:0B48H         LINE#         59
+  C:0B48H         LINE#         60
+  C:0B4BH         LINE#         61
+  C:0B52H         LINE#         62
+  C:0B58H         LINE#         63
+  C:0B58H         LINE#         64
+  C:0B5BH         LINE#         65
+  C:0B6DH         LINE#         66
+  C:0B6DH         LINE#         67
+  C:0B6DH         LINE#         68
+  C:0B70H         LINE#         69
+  C:0B72H         LINE#         70
+  C:0B72H         LINE#         71
+  C:0B75H         LINE#         72
+  C:0B77H         LINE#         73
+  C:0B77H         LINE#         74
+  C:0B7AH         LINE#         75
+  C:0B7CH         LINE#         76
+  C:0B7CH         LINE#         77
+  C:0B7FH         LINE#         78
+  C:0B7FH         LINE#         79
+  C:0B7FH         LINE#         80
+  C:0B7FH         LINE#         81
+  C:0B82H         LINE#         82
+  C:0B95H         LINE#         83
+  C:0B95H         LINE#         84
+  C:0B95H         LINE#         85
+  C:0B98H         LINE#         86
+  C:0B9AH         LINE#         87
+  C:0B9AH         LINE#         88
+  C:0B9CH         LINE#         89
+  C:0B9EH         LINE#         90
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 7
+
+
+  C:0B9EH         LINE#         91
+  C:0BA0H         LINE#         92
+  C:0BA2H         LINE#         93
+  C:0BA2H         LINE#         94
+  C:0BA8H         LINE#         95
+  C:0BAAH         LINE#         96
+  C:0BAAH         LINE#         97
+  C:0BAAH         LINE#         99
+  C:0BAAH         LINE#         100
+  C:0BAFH         LINE#         101
+  C:0BAFH         LINE#         102
+  C:0BB2H         LINE#         103
+  C:0BB2H         LINE#         104
+  C:0BB5H         LINE#         105
+  C:0BB5H         LINE#         106
+  C:0BB7H         LINE#         107
   -------         ENDPROC       MAXTIR_FLIP_SCAN
-  -------         PROC          TIME0_INIT
-  C:0D80H         LINE#         85
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 6
-
-
-  C:0D80H         LINE#         86
-  C:0D80H         LINE#         87
-  C:0D83H         LINE#         88
-  C:0D86H         LINE#         89
-  C:0D89H         LINE#         90
-  C:0D8BH         LINE#         91
-  C:0D8DH         LINE#         92
-  C:0D8FH         LINE#         93
-  -------         ENDPROC       TIME0_INIT
   -------         ENDMOD        DEVICE
 
   -------         MODULE        GAME_DRAW
   C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0D33H         PUBLIC        _snake_change_dir
   D:00B0H         PUBLIC        P3
   C:09D5H         PUBLIC        _snake_pos_change
-  C:0CCBH         PUBLIC        _snake_init
-  C:0C79H         PUBLIC        _snake_move
-  C:0C24H         PUBLIC        getUcharFromSnake
+  C:0D6FH         PUBLIC        _snake_init
+  C:0CE1H         PUBLIC        _snake_move
+  C:0C8BH         PUBLIC        show_snake
+  C:0E71H         SYMBOL        _?ix1000
   -------         PROC          _SNAKE_INIT
   D:0001H         SYMBOL        snake
-  C:0CCBH         LINE#         3
-  C:0CCBH         LINE#         4
-  C:0CCBH         LINE#         5
-  C:0CCFH         LINE#         6
-  C:0CD8H         LINE#         7
-  C:0CE2H         LINE#         8
-  C:0CEAH         LINE#         9
-  C:0CF2H         LINE#         10
-  C:0CF9H         LINE#         11
+  C:0D6FH         LINE#         3
+  C:0D6FH         LINE#         4
+  C:0D6FH         LINE#         5
+  C:0D73H         LINE#         6
+  C:0D7CH         LINE#         7
+  C:0D86H         LINE#         8
+  C:0D8EH         LINE#         9
+  C:0D96H         LINE#         10
+  C:0D9EH         LINE#         11
   -------         ENDPROC       _SNAKE_INIT
-  -------         PROC          GETUCHARFROMSNAKE
-  D:003EH         SYMBOL        snake
-  -------         DO            
-  D:0007H         SYMBOL        i
-  D:006DH         SYMBOL        dat
-  -------         ENDDO         
-  C:0C24H         LINE#         14
-  C:0C24H         LINE#         15
-  C:0C24H         LINE#         18
-  C:0C27H         LINE#         19
-  C:0C29H         LINE#         20
-  C:0C39H         LINE#         21
-  C:0C39H         LINE#         22
-  C:0C4EH         LINE#         23
-  C:0C63H         LINE#         24
-  C:0C66H         LINE#         25
-  C:0C72H         LINE#         26
-  C:0C78H         LINE#         27
-  -------         ENDPROC       GETUCHARFROMSNAKE
   -------         PROC          _SNAKE_POS_CHANGE
-  D:0061H         SYMBOL        snake
-  D:0064H         SYMBOL        r
-  D:0066H         SYMBOL        c
+  D:0044H         SYMBOL        snake
+  D:0047H         SYMBOL        r
+  D:0049H         SYMBOL        c
   -------         DO            
-  D:0068H         SYMBOL        i
+  D:004BH         SYMBOL        i
   -------         ENDDO         
-  C:09D5H         LINE#         29
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 7
+  C:09D5H         LINE#         14
+  C:09DFH         LINE#         15
+  C:09DFH         LINE#         17
+  C:0A01H         LINE#         18
+  C:0A01H         LINE#         19
+  C:0A1CH         LINE#         20
+  C:0A28H         LINE#         21
+  C:0A32H         LINE#         22
+  C:0A39H         LINE#         23
+  C:0A39H         LINE#         24
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 8
 
 
-  C:09DFH         LINE#         30
-  C:09DFH         LINE#         32
-  C:09FEH         LINE#         33
-  C:09FEH         LINE#         34
-  C:0A05H         LINE#         35
-  C:0A05H         LINE#         36
-  C:0A28H         LINE#         37
-  C:0A2AH         LINE#         39
-  C:0A2AH         LINE#         40
-  C:0A51H         LINE#         41
-  C:0A51H         LINE#         42
-  C:0A58H         LINE#         43
-  C:0A58H         LINE#         44
-  C:0A7FH         LINE#         45
-  C:0A81H         LINE#         47
-  C:0A81H         LINE#         48
-  C:0AA8H         LINE#         49
-  C:0AA8H         LINE#         50
-  C:0AB3H         LINE#         51
+  C:0A53H         LINE#         25
+  C:0A55H         LINE#         27
+  C:0A55H         LINE#         28
+  C:0A6FH         LINE#         29
+  C:0A6FH         LINE#         30
+  C:0A76H         LINE#         31
+  C:0A76H         LINE#         32
+  C:0A90H         LINE#         33
+  C:0A92H         LINE#         35
+  C:0A92H         LINE#         36
+  C:0AACH         LINE#         37
+  C:0AACH         LINE#         38
   -------         ENDPROC       _SNAKE_POS_CHANGE
   -------         PROC          _SNAKE_MOVE
-  D:006AH         SYMBOL        snake
-  C:0C79H         LINE#         53
-  C:0C7FH         LINE#         54
-  C:0C7FH         LINE#         55
-  C:0C8FH         LINE#         56
-  C:0C8FH         LINE#         57
-  C:0C8FH         LINE#         58
-  C:0C96H         LINE#         59
-  C:0C98H         LINE#         60
-  C:0C98H         LINE#         61
-  C:0CA6H         LINE#         62
-  C:0CA8H         LINE#         63
-  C:0CA8H         LINE#         64
-  C:0CB6H         LINE#         65
-  C:0CB8H         LINE#         66
-  C:0CB8H         LINE#         67
-  C:0CCAH         LINE#         68
-  C:0CCAH         LINE#         69
-  C:0CCAH         LINE#         70
+  D:0041H         SYMBOL        snake
+  C:0CE1H         LINE#         40
+  C:0CE7H         LINE#         41
+  C:0CE7H         LINE#         42
+  C:0CF7H         LINE#         43
+  C:0CF7H         LINE#         44
+  C:0CF7H         LINE#         45
+  C:0CFEH         LINE#         46
+  C:0D00H         LINE#         47
+  C:0D00H         LINE#         48
+  C:0D0EH         LINE#         49
+  C:0D10H         LINE#         50
+  C:0D10H         LINE#         51
+  C:0D1EH         LINE#         52
+  C:0D20H         LINE#         53
+  C:0D20H         LINE#         54
+  C:0D32H         LINE#         55
+  C:0D32H         LINE#         56
+  C:0D32H         LINE#         57
   -------         ENDPROC       _SNAKE_MOVE
+  -------         PROC          SHOW_SNAKE
+  D:004DH         SYMBOL        snake
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0070H         SYMBOL        dat
+  -------         ENDDO         
+  C:0C8BH         LINE#         59
+  C:0C8BH         LINE#         60
+  C:0C8BH         LINE#         61
+  C:0C8CH         LINE#         62
+  C:0C9DH         LINE#         63
+  C:0CA8H         LINE#         64
+  C:0CA8H         LINE#         65
+  C:0CBDH         LINE#         66
+  C:0CD2H         LINE#         67
+  C:0CD5H         LINE#         68
+  C:0CD8H         LINE#         69
+  -------         ENDPROC       SHOW_SNAKE
+  -------         PROC          _SNAKE_CHANGE_DIR
+  D:0001H         SYMBOL        snake
+  D:0005H         SYMBOL        k
+  C:0D33H         LINE#         72
+  C:0D33H         LINE#         73
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 9
+
+
+  C:0D33H         LINE#         74
+  C:0D44H         LINE#         75
+  C:0D44H         LINE#         76
+  C:0D44H         LINE#         77
+  C:0D4BH         LINE#         78
+  C:0D4BH         LINE#         79
+  C:0D4CH         LINE#         80
+  C:0D4CH         LINE#         81
+  C:0D4EH         LINE#         82
+  C:0D4EH         LINE#         83
+  C:0D53H         LINE#         84
+  C:0D53H         LINE#         85
+  C:0D55H         LINE#         86
+  C:0D55H         LINE#         87
+  C:0D57H         LINE#         88
+  C:0D57H         LINE#         89
+  C:0D5EH         LINE#         90
+  C:0D5EH         LINE#         91
+  C:0D60H         LINE#         92
+  C:0D60H         LINE#         93
+  C:0D62H         LINE#         94
+  C:0D62H         LINE#         95
+  C:0D69H         LINE#         96
+  C:0D69H         LINE#         97
+  C:0D6EH         LINE#         98
+  C:0D6EH         LINE#         99
+  C:0D6EH         LINE#         100
+  C:0D6EH         LINE#         101
+  -------         ENDPROC       _SNAKE_CHANGE_DIR
   -------         ENDMOD        GAME_DRAW
 
   -------         MODULE        ?C?COPY
@@ -419,9 +527,6 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
 
   -------         MODULE        ?C?CSTPTR
   C:093CH         PUBLIC        ?C?CSTPTR
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  17:42:38  PAGE 8
-
-
   -------         ENDMOD        ?C?CSTPTR
 
   -------         MODULE        ?C?CSTOPTR
@@ -434,17 +539,14 @@ SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
 
   -------         MODULE        ?C?ISTOPTR
   C:09A8H         PUBLIC        ?C?ISTOPTR
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/17/2024  23:15:09  PAGE 10
+
+
   -------         ENDMOD        ?C?ISTOPTR
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?MAXTIR_FLIP_SCAN?DEVICE
-
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SNAKE_MOVE?GAME_DRAW
-
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 034EH BYTE (41%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0426H BYTE (51%) *
 ******************************************************************************
 
-Program Size: data=113.0 xdata=0 code=1444
-LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)
+Program Size: data=122.0 xdata=0 code=1660
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

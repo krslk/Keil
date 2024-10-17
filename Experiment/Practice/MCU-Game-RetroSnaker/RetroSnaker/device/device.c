@@ -1,5 +1,25 @@
 #include "device.h"
 
+void time0_init(void)
+{
+    TMOD |= 0x01;
+    TH0 = 0xFC;
+    TL0 = 0x18;
+    ET0 = 1;
+    EA = 1;
+    TR0 = 1;
+}
+
+void time1_init(void)
+{
+    TMOD |= 0x01;
+    TH1 = 0xFC;
+    TL1 = 0x18;
+    ET1 = 1;
+    EA = 1;
+    TR1 = 1;
+}
+
 void hc595_write_data(uchar8_t dat)
 {
     uchar8_t i = 0;
@@ -33,9 +53,11 @@ void delay_10us(uint16_t s) //@11.0592MHz
 uchar8_t maxtir_flip_scan(void)
 {
     static uchar8_t key_value = 0;
+    static uchar8_t key_lock = 1;
     KEY_MATRIX_PORT = 0x0f;
-    if (KEY_MATRIX_PORT != 0x0f)
+    if (key_lock == 1 && KEY_MATRIX_PORT != 0x0f)
     {
+        key_lock = 0;
         delay_10us(1000);
         if (KEY_MATRIX_PORT != 0x0f)
         {
@@ -72,22 +94,14 @@ uchar8_t maxtir_flip_scan(void)
             key_value += 12;
             break;
         }
-        while (KEY_MATRIX_PORT != 0xf0)
-            ;
     }
     else
     {
+        if (KEY_MATRIX_PORT == 0x0f)
+        {
+            key_lock = 1;
+        }
         key_value = 0;
     }
     return key_value;
-}
-
-void time0_init(void)
-{
-    TMOD |= 0x01;
-    TH0 = 0xFC;
-    TL0 = 0x18;
-    ET0 = 1;
-    EA = 1;
-    TR0 = 1;
 }

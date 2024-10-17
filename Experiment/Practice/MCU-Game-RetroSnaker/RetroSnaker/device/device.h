@@ -30,7 +30,7 @@ void hc595_write_data(uchar8_t dat);
 
 /**
  * @brief LED阵列显示
- * @param 长度为2的ucha8_t数组数据，分别控制LED阵列的行和列
+ * @param 
  */
 void led_maxtir_dispaly(char8_t dat[]);
 
@@ -47,5 +47,10 @@ uchar8_t maxtir_flip_scan(void);
  * @return null
  */
 void time0_init(void);
+
+/**
+ * 
+ */
+void time1_init(void);
 
 #endif

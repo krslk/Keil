@@ -25,15 +25,25 @@ typedef struct
  * @return null
  */
 void snake_init(Snake *snake);
-/**
- * @brief 将蛇身坐标转换为点亮LED阵所需的数据类型
- * @param snake 蛇信息结构体变量
- * @return 返回一维数组，分别为输入给LED阵列行端口和列端口的值
- */
-uchar8_t *getUcharFromSnake(Snake snake);
+
 /**
  * @brief 蛇移动控制
  * @param Snake *,蛇信息结构体指针
  * @return null
  */
 void snake_move(Snake *snake);
+
+/**
+ * @brief 显示蛇的位置
+ * @param Snake,蛇信息结构体
+ * @return 无
+ */
+void show_snake(Snake Snake);
+
+/**
+ * @brief 改变蛇的移动方向,根据矩阵按键号k使蛇向指定方向移动
+ * @param Snake *,蛇信息结构体指针
+ * @param uchar8_t k,表示按键号
+ * @return 无
+ */
+void snake_change_dir(Snake *snake, uchar8_t k);

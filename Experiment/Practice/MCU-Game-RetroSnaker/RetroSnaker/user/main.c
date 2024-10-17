@@ -9,16 +9,18 @@ uchar8_t gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
 #endif
 
 sbit led = P2 ^ 7; // 程序运行测试
+uchar8_t key_value = 0;
 Snake snake;
 
 void main()
 {
     snake_init(&snake);
     time0_init();
+    time1_init();
     while (1)
     {
-        // snake_move(&snake);
-        // delay_10us(500000);
+        snake_move(&snake);
+        delay_10us(5000000);
     }
 }
 
@@ -28,10 +30,26 @@ void time0() interrupt 1
     TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
     TL0 = 0X18;
     time0_count++;
-    if (time0_count >= 500)
+    if (time0_count >= 3)
     {
         time0_count = 0;
-        led = !led;
-        led_maxtir_dispaly(getUcharFromSnake(snake));
+        key_value = maxtir_flip_scan();
+        if (key_value != 0)
+        {
+            snake_change_dir(&snake, key_value);
+        }
+    }
+}
+
+void time1() interrupt 3
+{
+    static uint16_t time1_count = 0; // 定义静态变量i
+    TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
+    TL0 = 0X18;
+    time1_count++;
+    if (time1_count >= 20)
+    {
+        time1_count = 0;
+        show_snake(snake);
     }
 }
