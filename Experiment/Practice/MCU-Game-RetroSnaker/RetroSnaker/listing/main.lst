@@ -1,0 +1,96 @@
+C51 COMPILER V9.01   MAIN                                                                  10/19/2024 00:30:36 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\object\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\main.c BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\m
+                    -ain.lst) OBJECT(.\object\main.obj)
+
+line level    source
+
+   1          #include "reg51.h"
+   2          #include "device.h"
+   3          #include "game_draw.h"
+   4          
+   5          uint16_t seed = 1;
+   6          Food food;
+   7          
+   8          sbit led = P2 ^ 7; // 程序运行测试
+   9          uchar8_t key_value = 0;
+  10          Snake snake;
+  11          
+  12          void main()
+  13          {
+  14   1          food.tag = 0;
+  15   1          food.r = rand(seed * 7) % 8;
+  16   1          food.c = rand(seed) % 8;
+  17   1          snake_init(&snake);
+  18   1          // time0_init();
+  19   1          time1_init();
+  20   1          while (1)
+  21   1          {
+  22   2              show_snake(snake);
+  23   2              show_food(food.r, food.c);
+  24   2              if (food.tag == 1)
+  25   2              {
+  26   3                  refresh_food_pos(&food, seed);
+  27   3              }
+  28   2          }
+  29   1      }
+  30          
+  31          // void time0() interrupt 1
+  32          // {
+  33          //     static uint16_t time0_count = 0; // 定义静态变量i
+  34          //     TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
+  35          //     TL0 = 0X18;
+  36          //     time0_count++;
+  37          //     seed_a = (seed_a + 3) % 65535;
+  38          //     if (time0_count >= 5)
+  39          //     {
+  40          //         led = !led;
+  41          //         time0_count = 0;
+  42          //         key_value = maxtir_flip_scan();
+  43          //         if (key_value != 0)
+  44          //         {
+  45          //             snake_change_dir(&snake, key_value);
+  46          //         }
+  47          //     }
+  48          // }
+  49          
+  50          void time1() interrupt 3
+  51          {
+  52   1          static uint16_t time1_count = 0; // 定义静态变量i
+  53   1          TH1 = 0XD5;                      // 给定时器赋初值，定时1ms
+  54   1          TL1 = 0X24;
+C51 COMPILER V9.01   MAIN                                                                  10/19/2024 00:30:36 PAGE 2   
+
+  55   1          time1_count++;
+  56   1          seed = (seed * 29 + 29) % 8;
+  57   1          if (time1_count % 5 == 0)
+  58   1          {
+  59   2              key_value = maxtir_flip_scan();
+  60   2              if (key_value != 0)
+  61   2              {
+  62   3                  snake_change_dir(&snake, key_value);
+  63   3              }
+  64   2          }
+  65   1          if (time1_count >= 500)
+  66   1          {
+  67   2              time1_count = 0;
+  68   2              snake_move(&snake, &food);
+  69   2          }
+  70   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    258    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     45    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

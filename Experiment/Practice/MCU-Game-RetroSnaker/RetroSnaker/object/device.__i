@@ -1,0 +1,1 @@
+"device\device.c" BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\device.lst) OBJECT(.\object\device.obj)

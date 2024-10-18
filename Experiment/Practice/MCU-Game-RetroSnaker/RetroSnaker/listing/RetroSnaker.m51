@@ -1,0 +1,613 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/19/2024  00:33:18  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\object\STARTUP.obj, .\object\main.obj, .\object\device.obj, .\object\game_draw.obj TO .\ob
+>> ject\RetroSnaker PRINT (.\listing\RetroSnaker.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\object\STARTUP.obj (?C_STARTUP)
+  .\object\main.obj (MAIN)
+  .\object\device.obj (DEVICE)
+  .\object\game_draw.obj (GAME_DRAW)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ILDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IILDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ISTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IILDX)
+
+
+LINK MAP OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     003CH     UNIT         _DATA_GROUP_
+            DATA    0044H     002DH     UNIT         ?DT?MAIN
+            DATA    0071H     0002H     UNIT         ?DT?DEVICE
+            IDATA   0073H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0018H                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+                    001EH     07E2H                  *** GAP ***
+            CODE    0800H     029FH     UNIT         ?C?LIB_CODE
+            CODE    0A9FH     00D6H     UNIT         ?PR?_SNAKE_POS_CHANGE?GAME_DRAW
+            CODE    0B75H     00A0H     UNIT         ?PR?TIME1?MAIN
+            CODE    0C15H     0098H     UNIT         ?PR?_SNAKE_MOVE?GAME_DRAW
+            CODE    0CADH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0D39H     0078H     UNIT         ?PR?MAXTIR_FLIP_SCAN?DEVICE
+            CODE    0DB1H     0062H     UNIT         ?PR?MAIN?MAIN
+            CODE    0E13H     0061H     UNIT         ?PR?SHOW_SNAKE?GAME_DRAW
+            CODE    0E74H     0050H     UNIT         ?PR?_SNAKE_INIT?GAME_DRAW
+            CODE    0EC4H     0049H     UNIT         ?PR?_REFRESH_FOOD_POS?GAME_DRAW
+            CODE    0F0DH     003CH     UNIT         ?PR?_SNAKE_CHANGE_DIR?GAME_DRAW
+            CODE    0F49H     0034H     UNIT         ?PR?_HC595_WRITE_DATA?DEVICE
+            CODE    0F7DH     0030H     UNIT         ?PR?_EAT_FOOD?GAME_DRAW
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 2
+
+
+            CODE    0FADH     0029H     UNIT         ?PR?_RAND?DEVICE
+            CODE    0FD6H     0027H     UNIT         ?PR?_SHOW_FOOD?GAME_DRAW
+            CODE    0FFDH     001CH     UNIT         ?PR?_LED_MAXTIR_DISPALY?DEVICE
+            CODE    1019H     0012H     UNIT         ?C_INITSEG
+            CODE    102BH     0010H     UNIT         ?PR?TIME1_INIT?DEVICE
+            CODE    103BH     000EH     UNIT         ?PR?_DELAY_10US?DEVICE
+            CODE    1049H     0002H     UNIT         ?CO?GAME_DRAW
+
+
+
+OVERLAY MAP OF MODULE:   .\object\RetroSnaker (?C_STARTUP)
+
+
+SEGMENT                                   DATA_GROUP 
+  +--> CALLED SEGMENT                   START    LENGTH
+-------------------------------------------------------
+?C_C51STARTUP                           -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                           -----    -----
+  +--> ?PR?_RAND?DEVICE
+  +--> ?PR?_SNAKE_INIT?GAME_DRAW
+  +--> ?PR?TIME1_INIT?DEVICE
+  +--> ?PR?SHOW_SNAKE?GAME_DRAW
+  +--> ?PR?_SHOW_FOOD?GAME_DRAW
+  +--> ?PR?_REFRESH_FOOD_POS?GAME_DRAW
+
+?PR?_RAND?DEVICE                        000DH    0002H
+
+?PR?SHOW_SNAKE?GAME_DRAW                0008H    0028H
+  +--> ?CO?GAME_DRAW
+  +--> ?PR?_LED_MAXTIR_DISPALY?DEVICE
+
+?PR?_LED_MAXTIR_DISPALY?DEVICE          0030H    0003H
+  +--> ?PR?_HC595_WRITE_DATA?DEVICE
+
+?PR?_HC595_WRITE_DATA?DEVICE            0033H    0002H
+  +--> ?PR?_DELAY_10US?DEVICE
+
+?PR?_SHOW_FOOD?GAME_DRAW                0008H    0002H
+  +--> ?PR?_HC595_WRITE_DATA?DEVICE
+
+?PR?_REFRESH_FOOD_POS?GAME_DRAW         0008H    0005H
+  +--> ?PR?_RAND?DEVICE
+
+*** NEW ROOT ***************************************************
+
+?PR?TIME1?MAIN                          -----    -----
+  +--> ?PR?MAXTIR_FLIP_SCAN?DEVICE
+  +--> ?PR?_SNAKE_CHANGE_DIR?GAME_DRAW
+  +--> ?PR?_SNAKE_MOVE?GAME_DRAW
+
+?PR?_SNAKE_MOVE?GAME_DRAW               0035H    0006H
+  +--> ?PR?_SNAKE_POS_CHANGE?GAME_DRAW
+  +--> ?PR?_EAT_FOOD?GAME_DRAW
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 3
+
+
+?PR?_SNAKE_POS_CHANGE?GAME_DRAW         003BH    0009H
+
+
+
+SYMBOL TABLE OF MODULE:  .\object\RetroSnaker (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0CADH         SEGMENT       ?C_C51STARTUP
+  I:0073H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0CB0H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0CADH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0CADH         LINE#         133
+  C:0CAFH         LINE#         134
+  C:0CB0H         LINE#         135
+  C:0CB1H         LINE#         136
+  C:0CB3H         LINE#         185
+  C:0CB6H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0046H         PUBLIC        snake
+  D:006BH         PUBLIC        seed
+  C:0DB1H         PUBLIC        main
+  D:006DH         PUBLIC        food
+  D:0070H         PUBLIC        key_value
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  C:0B75H         PUBLIC        time1
+  -------         PROC          MAIN
+  C:0DB1H         LINE#         12
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 4
+
+
+  C:0DB1H         LINE#         13
+  C:0DB1H         LINE#         14
+  C:0DB4H         LINE#         15
+  C:0DC6H         LINE#         16
+  C:0DD2H         LINE#         17
+  C:0DDBH         LINE#         19
+  C:0DDEH         LINE#         20
+  C:0DDEH         LINE#         21
+  C:0DDEH         LINE#         22
+  C:0DF4H         LINE#         23
+  C:0DFFH         LINE#         24
+  C:0E04H         LINE#         25
+  C:0E04H         LINE#         26
+  C:0E11H         LINE#         27
+  C:0E11H         LINE#         28
+  -------         ENDPROC       MAIN
+  -------         PROC          TIME1
+  -------         DO            
+  D:0044H         SYMBOL        time1_count
+  -------         ENDDO         
+  C:0B75H         LINE#         50
+  C:0B92H         LINE#         53
+  C:0B95H         LINE#         54
+  C:0B98H         LINE#         55
+  C:0BA0H         LINE#         56
+  C:0BB7H         LINE#         57
+  C:0BC4H         LINE#         58
+  C:0BC4H         LINE#         59
+  C:0BC9H         LINE#         60
+  C:0BCDH         LINE#         61
+  C:0BCDH         LINE#         62
+  C:0BD7H         LINE#         63
+  C:0BD7H         LINE#         64
+  C:0BD7H         LINE#         65
+  C:0BE2H         LINE#         66
+  C:0BE2H         LINE#         67
+  C:0BE8H         LINE#         68
+  C:0BFAH         LINE#         69
+  C:0BFAH         LINE#         70
+  -------         ENDPROC       TIME1
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DEVICE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00B0H.6       PUBLIC        SRCLK
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:0FFDH         PUBLIC        _led_maxtir_dispaly
+  C:0FADH         PUBLIC        _rand
+  B:00B0H.5       PUBLIC        RCLK
+  C:0D39H         PUBLIC        maxtir_flip_scan
+  D:0089H         PUBLIC        TMOD
+  C:103FH         PUBLIC        _delay_10us
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 5
+
+
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  B:00B0H.4       PUBLIC        SER
+  C:102BH         PUBLIC        time1_init
+  C:0F49H         PUBLIC        _hc595_write_data
+  -------         PROC          TIME1_INIT
+  C:102BH         LINE#         13
+  C:102BH         LINE#         14
+  C:102BH         LINE#         15
+  C:102EH         LINE#         16
+  C:1031H         LINE#         17
+  C:1034H         LINE#         18
+  C:1036H         LINE#         19
+  C:1038H         LINE#         20
+  C:103AH         LINE#         21
+  -------         ENDPROC       TIME1_INIT
+  -------         PROC          _HC595_WRITE_DATA
+  D:0033H         SYMBOL        dat
+  -------         DO            
+  D:0034H         SYMBOL        i
+  -------         ENDDO         
+  C:0F49H         LINE#         23
+  C:0F4BH         LINE#         24
+  C:0F4BH         LINE#         25
+  C:0F4EH         LINE#         26
+  C:0F50H         LINE#         27
+  C:0F50H         LINE#         28
+  C:0F5CH         LINE#         29
+  C:0F62H         LINE#         30
+  C:0F64H         LINE#         31
+  C:0F67H         LINE#         32
+  C:0F69H         LINE#         33
+  C:0F6CH         LINE#         34
+  C:0F75H         LINE#         35
+  C:0F77H         LINE#         36
+  C:0F7AH         LINE#         37
+  C:0F7CH         LINE#         38
+  -------         ENDPROC       _HC595_WRITE_DATA
+  -------         PROC          _LED_MAXTIR_DISPALY
+  D:0030H         SYMBOL        dat
+  C:0FFDH         LINE#         40
+  C:1003H         LINE#         41
+  C:1003H         LINE#         42
+  C:100AH         LINE#         43
+  C:1018H         LINE#         44
+  -------         ENDPROC       _LED_MAXTIR_DISPALY
+  C:103BH         SYMBOL        L?0030
+  -------         PROC          L?0029
+  -------         ENDPROC       L?0029
+  C:103BH         SYMBOL        L?0030
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        s
+  C:103FH         LINE#         46
+  C:103FH         LINE#         47
+  C:103FH         LINE#         48
+  C:1048H         LINE#         50
+  -------         ENDPROC       _DELAY_10US
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 6
+
+
+  -------         PROC          MAXTIR_FLIP_SCAN
+  -------         DO            
+  D:0071H         SYMBOL        key_value
+  D:0072H         SYMBOL        key_lock
+  -------         ENDDO         
+  C:0D39H         LINE#         52
+  C:0D39H         LINE#         53
+  C:0D39H         LINE#         56
+  C:0D3CH         LINE#         57
+  C:0D48H         LINE#         58
+  C:0D48H         LINE#         59
+  C:0D4BH         LINE#         60
+  C:0D51H         LINE#         61
+  C:0D51H         LINE#         62
+  C:0D54H         LINE#         63
+  C:0D66H         LINE#         64
+  C:0D66H         LINE#         65
+  C:0D66H         LINE#         66
+  C:0D69H         LINE#         67
+  C:0D6BH         LINE#         68
+  C:0D6BH         LINE#         69
+  C:0D6EH         LINE#         70
+  C:0D70H         LINE#         71
+  C:0D70H         LINE#         72
+  C:0D73H         LINE#         73
+  C:0D75H         LINE#         74
+  C:0D75H         LINE#         75
+  C:0D78H         LINE#         76
+  C:0D78H         LINE#         77
+  C:0D78H         LINE#         78
+  C:0D78H         LINE#         79
+  C:0D7BH         LINE#         80
+  C:0D8EH         LINE#         81
+  C:0D8EH         LINE#         82
+  C:0D8EH         LINE#         83
+  C:0D91H         LINE#         84
+  C:0D93H         LINE#         85
+  C:0D93H         LINE#         86
+  C:0D95H         LINE#         87
+  C:0D97H         LINE#         88
+  C:0D97H         LINE#         89
+  C:0D99H         LINE#         90
+  C:0D9BH         LINE#         91
+  C:0D9BH         LINE#         92
+  C:0DA1H         LINE#         93
+  C:0DA3H         LINE#         94
+  C:0DA3H         LINE#         95
+  C:0DA3H         LINE#         97
+  C:0DA3H         LINE#         98
+  C:0DA8H         LINE#         99
+  C:0DA8H         LINE#         100
+  C:0DABH         LINE#         101
+  C:0DABH         LINE#         102
+  C:0DAEH         LINE#         103
+  C:0DAEH         LINE#         104
+  C:0DB0H         LINE#         105
+  -------         ENDPROC       MAXTIR_FLIP_SCAN
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 7
+
+
+  -------         PROC          _RAND
+  D:0006H         SYMBOL        seed
+  -------         DO            
+  D:000DH         SYMBOL        a
+  D:0002H         SYMBOL        c
+  D:0082H         SYMBOL        m
+  -------         ENDDO         
+  C:0FADH         LINE#         107
+  C:0FADH         LINE#         108
+  C:0FADH         LINE#         109
+  C:0FB3H         LINE#         110
+  C:0FB5H         LINE#         111
+  C:0FB8H         LINE#         112
+  C:0FD5H         LINE#         113
+  -------         ENDPROC       _RAND
+  -------         ENDMOD        DEVICE
+
+  -------         MODULE        GAME_DRAW
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:0F0DH         PUBLIC        _snake_change_dir
+  D:00B0H         PUBLIC        P3
+  C:0A9FH         PUBLIC        _snake_pos_change
+  C:0E74H         PUBLIC        _snake_init
+  C:0C15H         PUBLIC        _snake_move
+  C:0EC4H         PUBLIC        _refresh_food_pos
+  C:0E13H         PUBLIC        show_snake
+  C:1049H         SYMBOL        _?ix1000
+  C:0F7DH         PUBLIC        _eat_food
+  C:0FD6H         PUBLIC        _show_food
+  -------         PROC          _SNAKE_INIT
+  D:0001H         SYMBOL        snake
+  C:0E74H         LINE#         3
+  C:0E74H         LINE#         4
+  C:0E74H         LINE#         5
+  C:0E78H         LINE#         6
+  C:0E81H         LINE#         7
+  C:0E8BH         LINE#         8
+  C:0E95H         LINE#         9
+  C:0E9DH         LINE#         10
+  C:0EA5H         LINE#         11
+  C:0EADH         LINE#         12
+  C:0EB5H         LINE#         13
+  C:0EBCH         LINE#         14
+  -------         ENDPROC       _SNAKE_INIT
+  -------         PROC          _SNAKE_POS_CHANGE
+  D:003BH         SYMBOL        snake
+  D:003EH         SYMBOL        r
+  D:0040H         SYMBOL        c
+  -------         DO            
+  D:0042H         SYMBOL        i
+  -------         ENDDO         
+  C:0A9FH         LINE#         17
+  C:0AA9H         LINE#         18
+  C:0AA9H         LINE#         20
+  C:0AC5H         LINE#         21
+  C:0AC5H         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 8
+
+
+  C:0AE4H         LINE#         23
+  C:0AF0H         LINE#         24
+  C:0AFAH         LINE#         25
+  C:0B01H         LINE#         26
+  C:0B01H         LINE#         27
+  C:0B1BH         LINE#         28
+  C:0B1DH         LINE#         30
+  C:0B1DH         LINE#         31
+  C:0B37H         LINE#         32
+  C:0B37H         LINE#         33
+  C:0B3EH         LINE#         34
+  C:0B3EH         LINE#         35
+  C:0B58H         LINE#         36
+  C:0B5AH         LINE#         38
+  C:0B5AH         LINE#         39
+  C:0B74H         LINE#         40
+  C:0B74H         LINE#         41
+  -------         ENDPROC       _SNAKE_POS_CHANGE
+  -------         PROC          _SNAKE_MOVE
+  D:0035H         SYMBOL        snake
+  D:0038H         SYMBOL        food
+  C:0C15H         LINE#         43
+  C:0C1BH         LINE#         44
+  C:0C1BH         LINE#         45
+  C:0C2BH         LINE#         46
+  C:0C2BH         LINE#         47
+  C:0C2BH         LINE#         48
+  C:0C32H         LINE#         49
+  C:0C34H         LINE#         50
+  C:0C34H         LINE#         51
+  C:0C42H         LINE#         52
+  C:0C44H         LINE#         53
+  C:0C44H         LINE#         54
+  C:0C52H         LINE#         55
+  C:0C54H         LINE#         56
+  C:0C54H         LINE#         57
+  C:0C66H         LINE#         58
+  C:0C66H         LINE#         59
+  C:0C66H         LINE#         60
+  C:0C9BH         LINE#         61
+  C:0C9BH         LINE#         62
+  C:0CA3H         LINE#         63
+  C:0CACH         LINE#         64
+  C:0CACH         LINE#         65
+  -------         ENDPROC       _SNAKE_MOVE
+  -------         PROC          SHOW_SNAKE
+  D:0008H         SYMBOL        snake
+  -------         DO            
+  D:002DH         SYMBOL        i
+  D:002EH         SYMBOL        dat
+  -------         ENDDO         
+  C:0E13H         LINE#         67
+  C:0E13H         LINE#         68
+  C:0E13H         LINE#         69
+  C:0E16H         LINE#         70
+  C:0E27H         LINE#         71
+  C:0E34H         LINE#         72
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 9
+
+
+  C:0E34H         LINE#         73
+  C:0E37H         LINE#         74
+  C:0E4DH         LINE#         75
+  C:0E63H         LINE#         76
+  C:0E66H         LINE#         77
+  C:0E6FH         LINE#         78
+  C:0E73H         LINE#         79
+  -------         ENDPROC       SHOW_SNAKE
+  -------         PROC          _SHOW_FOOD
+  D:0006H         SYMBOL        r
+  D:0008H         SYMBOL        c
+  C:0FD6H         LINE#         81
+  C:0FDAH         LINE#         82
+  C:0FDAH         LINE#         83
+  C:0FDDH         LINE#         84
+  C:0FECH         LINE#         85
+  C:0FFCH         LINE#         86
+  -------         ENDPROC       _SHOW_FOOD
+  -------         PROC          _SNAKE_CHANGE_DIR
+  D:0001H         SYMBOL        snake
+  D:0005H         SYMBOL        k
+  C:0F0DH         LINE#         88
+  C:0F0DH         LINE#         89
+  C:0F0DH         LINE#         90
+  C:0F1EH         LINE#         91
+  C:0F1EH         LINE#         92
+  C:0F1EH         LINE#         93
+  C:0F25H         LINE#         94
+  C:0F25H         LINE#         95
+  C:0F26H         LINE#         96
+  C:0F26H         LINE#         97
+  C:0F28H         LINE#         98
+  C:0F28H         LINE#         99
+  C:0F2DH         LINE#         100
+  C:0F2DH         LINE#         101
+  C:0F2FH         LINE#         102
+  C:0F2FH         LINE#         103
+  C:0F31H         LINE#         104
+  C:0F31H         LINE#         105
+  C:0F38H         LINE#         106
+  C:0F38H         LINE#         107
+  C:0F3AH         LINE#         108
+  C:0F3AH         LINE#         109
+  C:0F3CH         LINE#         110
+  C:0F3CH         LINE#         111
+  C:0F43H         LINE#         112
+  C:0F43H         LINE#         113
+  C:0F48H         LINE#         114
+  C:0F48H         LINE#         115
+  C:0F48H         LINE#         116
+  C:0F48H         LINE#         117
+  -------         ENDPROC       _SNAKE_CHANGE_DIR
+  -------         PROC          _EAT_FOOD
+  D:0001H         SYMBOL        snake
+  C:0F7DH         LINE#         119
+  C:0F7DH         LINE#         120
+  C:0F7DH         LINE#         121
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 10
+
+
+  C:0F99H         LINE#         122
+  C:0F99H         LINE#         123
+  C:0FA3H         LINE#         124
+  C:0FA3H         LINE#         125
+  -------         ENDPROC       _EAT_FOOD
+  -------         PROC          _REFRESH_FOOD_POS
+  D:0008H         SYMBOL        food
+  D:000BH         SYMBOL        seed
+  C:0EC4H         LINE#         128
+  C:0ECEH         LINE#         129
+  C:0ECEH         LINE#         130
+  C:0EE2H         LINE#         131
+  C:0F00H         LINE#         132
+  -------         ENDPROC       _REFRESH_FOOD_POS
+  -------         ENDMOD        GAME_DRAW
+
+  -------         MODULE        ?C?COPY
+  C:08D0H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDPTR
+  C:08F6H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:090FH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:093CH         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:094EH         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?IMUL
+  C:0970H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?UIDIV
+  C:0982H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?ILDOPTR
+  C:09D7H         PUBLIC        ?C?ILDOPTR
+  -------         ENDMOD        ?C?ILDOPTR
+
+  -------         MODULE        ?C?IILDOPTR
+  C:0A0FH         PUBLIC        ?C?IILDOPTR
+  -------         ENDMOD        ?C?IILDOPTR
+
+  -------         MODULE        ?C?ISTOPTR
+  C:0A5CH         PUBLIC        ?C?ISTOPTR
+  -------         ENDMOD        ?C?ISTOPTR
+
+  -------         MODULE        ?C?IILDX
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2024  00:33:18  PAGE 11
+
+
+  C:0A89H         PUBLIC        ?C?IILDX
+  -------         ENDMOD        ?C?IILDX
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0531H BYTE (64%) *
+******************************************************************************
+
+Program Size: data=116.0 xdata=0 code=2129
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
