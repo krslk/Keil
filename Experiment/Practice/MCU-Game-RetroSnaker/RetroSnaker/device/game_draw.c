@@ -69,6 +69,16 @@ void show_snake(Snake snake)
     led_maxtir_dispaly(dat);
 }
 
+// void show_food(uint16_t x, uint16_t y)
+// {
+//     uchar8_t buf = 0x00;
+//     buf = (1 << y);
+//     hc595_write_data(buf);
+//     buf = 0x00;
+//     buf = (1 << x);
+//     LED_MAXTIR_CONTROL_PORT = ~buf;
+// }
+
 void snake_change_dir(Snake *snake, uchar8_t k)
 {
     switch (k)

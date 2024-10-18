@@ -47,3 +47,8 @@ void show_snake(Snake Snake);
  * @return 无
  */
 void snake_change_dir(Snake *snake, uchar8_t k);
+
+/**
+ *
+ */
+void show_food(uint16_t x, uint16_t y);

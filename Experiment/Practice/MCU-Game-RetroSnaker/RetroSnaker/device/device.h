@@ -30,7 +30,7 @@ void hc595_write_data(uchar8_t dat);
 
 /**
  * @brief LED阵列显示
- * @param 
+ * @param
  */
 void led_maxtir_dispaly(char8_t dat[]);
 
@@ -49,8 +49,15 @@ uchar8_t maxtir_flip_scan(void);
 void time0_init(void);
 
 /**
- * 
+ *
  */
 void time1_init(void);
+
+/**
+ * @brief 线性同余生成随机数
+ * @param seed,随机数种子
+ * @return 无
+ */
+uint16_t rand(uint16_t seed);
 
 #endif

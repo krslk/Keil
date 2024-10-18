@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   GAME_DRAW                                                             10/17/2024 23:15:08 PAGE 1   
+C51 COMPILER V9.01   GAME_DRAW                                                             10/18/2024 00:18:59 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE GAME_DRAW
@@ -62,7 +62,7 @@ line level    source
   52   2              break;
   53   2          case RIGHT:
   54   2              snake_pos_change(snake, 0, -1);
-C51 COMPILER V9.01   GAME_DRAW                                                             10/17/2024 23:15:08 PAGE 2   
+C51 COMPILER V9.01   GAME_DRAW                                                             10/18/2024 00:18:59 PAGE 2   
 
   55   2              break;
   56   2          }
@@ -81,41 +81,53 @@ line level    source
   69   1          led_maxtir_dispaly(dat);
   70   1      }
   71          
-  72          void snake_change_dir(Snake *snake, uchar8_t k)
-  73          {
-  74   1          switch (k)
-  75   1          {
-  76   2          case 2:
-  77   2              if (snake->dir != DOWN)
-  78   2              {
-  79   3                  snake->dir = UP;
-  80   3              }
-  81   2              break;
-  82   2          case 10:
-  83   2              if (snake->dir != UP)
-  84   2              {
-  85   3                  snake->dir = DOWN;
-  86   3              }
-  87   2              break;
-  88   2          case 5:
-  89   2              if (snake->dir != RIGHT)
-  90   2              {
-  91   3                  snake->dir = LEFT;
-  92   3              }
-  93   2              break;
-  94   2          case 7:
-  95   2              if (snake->dir != LEFT)
-  96   2              {
-  97   3                  snake->dir = RIGHT;
-  98   3              }
-  99   2              break;
- 100   2          }
- 101   1      }
+  72          // void show_food(uint16_t x, uint16_t y)
+  73          // {
+  74          //     uchar8_t buf = 0x00;
+  75          //     buf = (1 << y);
+  76          //     hc595_write_data(buf);
+  77          //     buf = 0x00;
+  78          //     buf = (1 << x);
+  79          //     LED_MAXTIR_CONTROL_PORT = ~buf;
+  80          // }
+  81          
+  82          void snake_change_dir(Snake *snake, uchar8_t k)
+  83          {
+  84   1          switch (k)
+  85   1          {
+  86   2          case 2:
+  87   2              if (snake->dir != DOWN)
+  88   2              {
+  89   3                  snake->dir = UP;
+  90   3              }
+  91   2              break;
+  92   2          case 10:
+  93   2              if (snake->dir != UP)
+  94   2              {
+  95   3                  snake->dir = DOWN;
+  96   3              }
+  97   2              break;
+  98   2          case 5:
+  99   2              if (snake->dir != RIGHT)
+ 100   2              {
+ 101   3                  snake->dir = LEFT;
+ 102   3              }
+ 103   2              break;
+ 104   2          case 7:
+ 105   2              if (snake->dir != LEFT)
+ 106   2              {
+ 107   3                  snake->dir = RIGHT;
+ 108   3              }
+ 109   2              break;
+ 110   2          }
+ 111   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    499    ----
    CONSTANT SIZE    =      2    ----
+C51 COMPILER V9.01   GAME_DRAW                                                             10/18/2024 00:18:59 PAGE 3   
+
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----      49

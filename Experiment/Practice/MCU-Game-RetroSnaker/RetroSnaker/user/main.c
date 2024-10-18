@@ -8,6 +8,8 @@ uchar8_t gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
                           0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
 #endif
 
+uint16_t seed_a = 1;
+uint16_t seed_b = 1;
 sbit led = P2 ^ 7; // 程序运行测试
 uchar8_t key_value = 0;
 Snake snake;
@@ -30,6 +32,7 @@ void time0() interrupt 1
     TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
     TL0 = 0X18;
     time0_count++;
+    seed_a = (seed_a + 3) % 65535;
     if (time0_count >= 3)
     {
         time0_count = 0;
@@ -47,9 +50,11 @@ void time1() interrupt 3
     TH0 = 0XFC;                      // 给定时器赋初值，定时1ms
     TL0 = 0X18;
     time1_count++;
+    seed_b = (seed_b + 1) % 65535;
     if (time1_count >= 20)
     {
         time1_count = 0;
         show_snake(snake);
+        // show_food(2, 2);
     }
 }

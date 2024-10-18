@@ -105,3 +105,11 @@ uchar8_t maxtir_flip_scan(void)
     }
     return key_value;
 }
+
+// uint16_t rand(uint16_t seed)
+// {
+//     uint16_t a = 11035152;
+//     uint16_t c = 12345;
+//     uint16_t m = 65535;
+//     return (a * seed + c) % m;
+// }
