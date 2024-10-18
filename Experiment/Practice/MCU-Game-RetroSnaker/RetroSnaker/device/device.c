@@ -1,20 +1,20 @@
 #include "device.h"
 
-void time0_init(void)
-{
-    TMOD |= 0x01;
-    TH0 = 0xFC;
-    TL0 = 0x18;
-    ET0 = 1;
-    EA = 1;
-    TR0 = 1;
-}
+// void time0_init(void)
+// {
+//     TMOD |= 0x01;
+//     TH0 = 0xFC;
+//     TL0 = 0x18;
+//     ET0 = 1;
+//     EA = 1;
+//     TR0 = 1;
+// }
 
 void time1_init(void)
 {
     TMOD |= 0x01;
-    TH1 = 0xFC;
-    TL1 = 0x18;
+    TH1 = 0xD5;
+    TL1 = 0x24;
     ET1 = 1;
     EA = 1;
     TR1 = 1;
@@ -45,8 +45,7 @@ void led_maxtir_dispaly(char8_t dat[])
 
 void delay_10us(uint16_t s) //@11.0592MHz
 {
-    uint16_t i = 2 * s;
-    while (--i)
+    while (--s)
         ;
 }
 
@@ -58,7 +57,6 @@ uchar8_t maxtir_flip_scan(void)
     if (key_lock == 1 && KEY_MATRIX_PORT != 0x0f)
     {
         key_lock = 0;
-        delay_10us(1000);
         if (KEY_MATRIX_PORT != 0x0f)
         {
             KEY_MATRIX_PORT = 0x0f;
@@ -106,10 +104,10 @@ uchar8_t maxtir_flip_scan(void)
     return key_value;
 }
 
-// uint16_t rand(uint16_t seed)
-// {
-//     uint16_t a = 11035152;
-//     uint16_t c = 12345;
-//     uint16_t m = 65535;
-//     return (a * seed + c) % m;
-// }
+uint16_t rand(uint16_t seed)
+{
+    uint16_t a = 17;
+    uint16_t c = 29;
+    uint16_t m = 8;
+    return (a * seed + c) % m;
+}

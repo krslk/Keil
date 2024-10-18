@@ -17,7 +17,15 @@ typedef struct
     uint16_t speed;           // 蛇的速度
     char8_t snake_pos[15][2]; // 蛇身的坐标
     uint16_t length;          // 蛇当前的长度
+    uint16_t max_len;
 } Snake;
+
+typedef struct
+{
+    uchar8_t r;
+    uchar8_t c;
+    uchar8_t tag; // 食物刷新的标志
+} Food;
 
 /**
  * @brief 蛇信息初识化
@@ -31,7 +39,7 @@ void snake_init(Snake *snake);
  * @param Snake *,蛇信息结构体指针
  * @return null
  */
-void snake_move(Snake *snake);
+void snake_move(Snake *snake, Food *food);
 
 /**
  * @brief 显示蛇的位置
@@ -52,3 +60,13 @@ void snake_change_dir(Snake *snake, uchar8_t k);
  *
  */
 void show_food(uint16_t x, uint16_t y);
+
+/**
+ *
+ */
+void eat_food(Snake *snake);
+
+/**
+ *
+ */
+void refresh_food_pos(Food *food, uint16_t seed);
