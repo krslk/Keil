@@ -1,4 +1,6 @@
 ".\object\STARTUP.obj",
-".\object\main.obj" 
+".\object\main.obj",
+".\object\device.obj",
+".\object\game_draw.obj" 
 TO ".\object\RetroSnaker" 
 PRINT(".\listing\RetroSnaker.m51") RAMSIZE(256) 

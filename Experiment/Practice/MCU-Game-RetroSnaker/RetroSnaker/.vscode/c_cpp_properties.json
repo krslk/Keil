@@ -42,7 +42,8 @@
             "includePath": [
                 "C:\\Keil_v5\\C51\\INC",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\startup",
-                "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\user"
+                "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\user",
+                "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\device"
             ],
             "defines": [
                 "__C51__",
@@ -73,6 +74,7 @@
         {
             "name": "RetroSnaker",
             "includePath": [
+                "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\device",
                 "C:\\Keil_v5\\C51\\INC",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\startup",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\Practice\\MCU-Game-RetroSnaker\\RetroSnaker\\user"

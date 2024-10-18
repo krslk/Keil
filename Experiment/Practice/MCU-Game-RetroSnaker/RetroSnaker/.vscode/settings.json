@@ -61,7 +61,8 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "REG52.H": "cpp"
+    "REG52.H": "cpp",
+    "device.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

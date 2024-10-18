@@ -12,13 +12,13 @@
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>AT89F52</Device>
+          <Device>AT89C52</Device>
           <Vendor>Atmel</Vendor>
-          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x1FFF) CLOCK(24000000)</Cpu>
+          <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
-          <DeviceId>3035</DeviceId>
+          <DeviceId>2980</DeviceId>
           <RegisterFile>REGX52.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
@@ -33,7 +33,7 @@
           <BinPath>C:\Keil_v5\C51\BIN\</BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
+          <RegisterFilePath>Atmel\</RegisterFilePath>
           <DBRegisterFilePath>Atmel\</DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
@@ -294,7 +294,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\device</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -360,6 +360,31 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\user\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>device</GroupName>
+          <Files>
+            <File>
+              <FileName>device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\device.c</FilePath>
+            </File>
+            <File>
+              <FileName>device.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\device\device.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_draw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\game_draw.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_draw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\device\game_draw.h</FilePath>
             </File>
           </Files>
         </Group>
