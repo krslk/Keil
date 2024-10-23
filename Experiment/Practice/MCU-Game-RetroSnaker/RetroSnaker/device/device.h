@@ -42,13 +42,6 @@ void led_maxtir_dispaly(char8_t dat[]);
 uchar8_t maxtir_flip_scan(void);
 
 /**
- * @brief 定时器0初始化
- * @param null
- * @return null
- */
-void time0_init(void);
-
-/**
  *
  */
 void time1_init(void);

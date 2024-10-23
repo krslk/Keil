@@ -1,0 +1,13 @@
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil_v5_arm\ARM\ARMCC\Bin'
+Build target 'Demo1010'
+compiling main.c...
+user\main.c(15): warning:  #1-D: last line of file ends without a newline
+  void main(void) {}
+user\main.c(15): warning:  #951-D: return type of function "main" must be "int"
+  void main(void) {}
+user\main.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=676 RO-data=320 RW-data=0 ZI-data=1632  
+FromELF: creating hex file...
+".\mdk\Demo1010.axf" - 0 Error(s), 2 Warning(s).
+Build Time Elapsed:  00:00:00

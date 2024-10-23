@@ -100,10 +100,12 @@
                 "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\lib\\inc",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\cmsis",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\user",
+                "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\device\\inc",
                 "E:\\Keil_v5_arm\\ARM\\ARMCC\\include",
                 "E:\\Keil_v5_arm\\ARM\\ARMCC\\include\\rw",
                 "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\lib\\src",
-                "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\startup"
+                "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\startup",
+                "e:\\KeilCode_Git\\Keil\\Experiment\\STM32\\Demo1010\\device\\src"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",

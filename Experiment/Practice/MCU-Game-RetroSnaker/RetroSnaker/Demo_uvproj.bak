@@ -376,6 +376,16 @@
               <FileType>5</FileType>
               <FilePath>.\device\device.h</FilePath>
             </File>
+            <File>
+              <FileName>game_draw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\game_draw.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_draw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\device\game_draw.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

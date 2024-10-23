@@ -1,1 +1,1 @@
-"user\main.c" BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\main.lst) OBJECT(.\object\main.obj)
+"user\main.c" LARGE BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\main.lst) OBJECT(.\object\main.obj)
