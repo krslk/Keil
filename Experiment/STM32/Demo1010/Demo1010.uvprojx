@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\lib\inc;.\cmsis;.\user</IncludePath>
+              <IncludePath>.\lib\inc;.\cmsis;.\user;.\device\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -543,6 +543,26 @@
         </Group>
         <Group>
           <GroupName>mdk</GroupName>
+        </Group>
+        <Group>
+          <GroupName>device</GroupName>
+          <Files>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\src\buzzer.c</FilePath>
+            </File>
+            <File>
+              <FileName>device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\src\device.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\device\src\led.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>

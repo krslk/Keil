@@ -28,3 +28,6 @@
 .\mdk\main.o: .\lib\inc\stm32f10x_usart.h
 .\mdk\main.o: .\lib\inc\stm32f10x_wwdg.h
 .\mdk\main.o: .\lib\inc\misc.h
+.\mdk\main.o: .\device\inc\device.h
+.\mdk\main.o: .\device\inc\led.h
+.\mdk\main.o: .\device\inc\buzzer.h
