@@ -1,15 +1,5 @@
 #include "device.h"
 
-// void time0_init(void)
-// {
-//     TMOD |= 0x01;
-//     TH0 = 0xFC;
-//     TL0 = 0x18;
-//     ET0 = 1;
-//     EA = 1;
-//     TR0 = 1;
-// }
-
 void time1_init(void)
 {
     TMOD |= 0x01;

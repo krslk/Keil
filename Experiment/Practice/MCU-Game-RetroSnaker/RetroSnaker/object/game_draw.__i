@@ -1,1 +1,0 @@
-"device\game_draw.c" BROWSE INCDIR(.\device) DEBUG OBJECTEXTEND PRINT(.\listing\game_draw.lst) OBJECT(.\object\game_draw.obj)

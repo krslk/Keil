@@ -46,7 +46,7 @@ void snake_move(Snake *snake, Food *food);
  * @param Snake,蛇信息结构体
  * @return 无
  */
-void show_snake(Snake Snake);
+// void show_snake(Snake Snake);
 
 /**
  * @brief 改变蛇的移动方向,根据矩阵按键号k使蛇向指定方向移动
@@ -57,16 +57,21 @@ void show_snake(Snake Snake);
 void snake_change_dir(Snake *snake, uchar8_t k);
 
 /**
- *
+ * @brief 
  */
-void show_food(uint16_t x, uint16_t y);
+// void show_food(uint16_t x, uint16_t y);
 
 /**
- *
+ * @brief
  */
 void eat_food(Snake *snake);
 
 /**
- *
+ * @brief 刷新食物位置
  */
 void refresh_food_pos(Food *food, uint16_t seed);
+
+/**
+ * @brief
+ */
+void display(const Snake snake,const Food food);
